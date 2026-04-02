@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a4945bf27381d4bb643f952a5e8ae6, type: 3}
+  m_Name: Data_Equipment_Ring_1Common_ShadowCharm
+  m_EditorClassIdentifier: 
+  id: Equipment_Ring_ShadowCharm
+  sprite: {fileID: 21300000, guid: 8c8a23d60bddb05499d269b373cf9337, type: 3}
+  equipmentName: "\uADF8\uB9BC\uC790 \uC2A4\uD06C\uB864"
+  desc: "\uAC15\uB825\uD55C \uC5B4\uB460\uC758 \uC800\uC8FC\uAC00 \uC11C\uB824\uC9C4\uAC83\uAC19\uC2B5\uB2C8\uB2E4"
+  rarity: 0
+  slotType: 4
+  buffs: []
+  statType1: 0
+  statValue1: 100
+  statType2: 1
+  statValue2: 200
+  skillReplaces: []

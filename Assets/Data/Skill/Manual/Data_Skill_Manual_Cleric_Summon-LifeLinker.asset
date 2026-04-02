@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Manual_Cleric_Summon-LifeLinker
+  m_EditorClassIdentifier: 
+  skillName: "\uC11C\uBA3C - \uB77C\uC774\uD504\uB9C1\uCEE4"
+  icon: {fileID: 21300000, guid: d50f8aa2e90177e4180a3c1d24ef2e43, type: 3}
+  skillScript: 
+  useType: 0
+  skillTags: 33
+  manaCost: 20
+  cooldown: 10
+  initialCooldown: 0
+  useCasting: 0
+  castingTime: 1
+  description: "\uBC94\uC704 \uB0B4 \uAC00\uC7A5 \uAC00\uAE4C\uC6B4 \uC544\uAD70\uC758
+    \uCCB4\uB825\uC744 \uD68C\uBCF5\uC2DC\uD0A4\uB294 \uB77C\uC774\uD504\uB9C1\uCEE4\uB97C
+    \uC18C\uD658\uD569\uB2C8\uB2E4."
+  targetType: 1
+  radius: 150
+  teamType: 3
+  effects:
+  - type: 3
+    buff: {fileID: 11400000, guid: 903cd227de5314f4794b70e9aa7fe776, type: 2}
+    bullet: {fileID: 0}
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 11400000, guid: 832c486a875940845852ecc833537a08, type: 2}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}

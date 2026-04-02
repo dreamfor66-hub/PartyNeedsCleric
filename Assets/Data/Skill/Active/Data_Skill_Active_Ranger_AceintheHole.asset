@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Active_Ranger_AceintheHole
+  m_EditorClassIdentifier: 
+  skillId: Skill_Active_Ranger_AceintheHole
+  skillName: "\uBE44\uC7A5\uC758 \uAE30\uC220"
+  icon: {fileID: 21300000, guid: 9c27696d48ba5bb40b5fe5316038da93, type: 3}
+  skillScript: "\uC2E0\uC911\uD558\uAC8C..."
+  useType: 1
+  skillTags: 0
+  manaCost: 0
+  cooldown: 15
+  initialCooldown: 0
+  conditions: []
+  useCasting: 1
+  castingTime: 1
+  description: "\uC81C\uC790\uB9AC\uC5D0 3\uCD08\uAC04 \uBA48\uCDB0 \uC9D1\uC911\uD569\uB2C8\uB2E4.\r\n\uC9D1\uC911\uD558\uB294
+    \uB3D9\uC548 \uD53C\uACA9\uB418\uC9C0 \uC54A\uC558\uB2E4\uBA74, \uAC00\uC7A5
+    \uAC00\uAE4C\uC6B4 \uC801\uBC29\uD5A5\uC73C\uB85C  \uD654\uC0B4 10\uAC1C\uB97C
+    \uB0A0\uB9BD\uB2C8\uB2E4."
+  targetType: 2
+  radius: 9999
+  teamType: 1
+  effects:
+  - type: 6
+    buff: {fileID: 11400000, guid: 60b8c5166267e204799fa8d731f1197a, type: 2}
+    bullet: {fileID: 0}
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: 71e07effc3fa0b74a808bfe223611eeb, type: 2}
+  - {fileID: 11400000, guid: 31d84dc3e960f1e44b93e605f6597b35, type: 2}

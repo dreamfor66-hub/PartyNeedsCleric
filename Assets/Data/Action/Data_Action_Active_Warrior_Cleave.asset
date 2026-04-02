@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d387604ba12444dbc0f761d918adfa, type: 3}
+  m_Name: Data_Action_Active_Warrior_Cleave
+  m_EditorClassIdentifier: 
+  totalFrame: 60
+  movementList:
+  - startFrame: 5
+    endFrame: 15
+    startValue: 100
+    endValue: 50
+  rotationList: []
+  hitBoxes:
+  - startFrame: 5
+    endFrame: 15
+    radius: 15
+    offset: {x: 0, y: 0}
+    hitBoxGroup: 0
+    hitId: 1
+    hitInterval: 0
+  - startFrame: 5
+    endFrame: 15
+    radius: 18
+    offset: {x: 0, y: 15}
+    hitBoxGroup: 0
+    hitId: 1
+    hitInterval: 0
+  - startFrame: 5
+    endFrame: 15
+    radius: 15
+    offset: {x: -10, y: 12}
+    hitBoxGroup: 0
+    hitId: 1
+    hitInterval: 0
+  - startFrame: 5
+    endFrame: 15
+    radius: 15
+    offset: {x: 10, y: 12}
+    hitBoxGroup: 0
+    hitId: 1
+    hitInterval: 0
+  - startFrame: 5
+    endFrame: 15
+    radius: 15
+    offset: {x: 15, y: 0}
+    hitBoxGroup: 0
+    hitId: 1
+    hitInterval: 0
+  - startFrame: 5
+    endFrame: 15
+    radius: 12
+    offset: {x: -12, y: 0}
+    hitBoxGroup: 0
+    hitId: 1
+    hitInterval: 0
+  hits:
+  - hitId: 1
+    hitFilter: 2
+    hitFxType: 20
+    attackMultiplier: 0.75
+    knockbackPower: 350
+    hitApplyBuffs:
+    - buff: {fileID: 11400000, guid: 6828192131b7c3846a43e5588e210d3b, type: 2}
+      count: 3
+    hitStop: 0.1
+    ignoreKnockbackDirection: 0
+  spawnBulletList: []
+  buffList: []
+  spawnCharacterList: []
+  restoreList: []
+  vfxList:
+  - frame: 4
+    vfxPrefab: {fileID: 1523967898144722327, guid: a9ec59089f1f4de43bc2c949efc9e991, type: 3}
+    offset: {x: 0, y: 10}
+    offsetAngle: 0
+  autoCorrectionType: 2

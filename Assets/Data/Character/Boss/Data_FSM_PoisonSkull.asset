@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 772fb8bc1c2f3144f995059ce9a57737, type: 3}
+  m_Name: Data_FSM_PoisonSkull
+  m_EditorClassIdentifier: 
+  fsmList:
+  - index: 0
+    duration: 3
+    type: 2
+    onStartExtra: 0
+    onEndExtra: 1
+    next: 1
+  - index: 1
+    duration: 3
+    type: 0
+    onStartExtra: -1
+    onEndExtra: -1
+    next: 2
+  - index: 2
+    duration: 3
+    type: 2
+    onStartExtra: 0
+    onEndExtra: 1
+    next: 3
+  - index: 3
+    duration: 3
+    type: 0
+    onStartExtra: -1
+    onEndExtra: -1
+    next: 0
+  extraActions:
+  - id: 0
+    type: 2
+    buff: {fileID: 0}
+    buffStacks: 1
+    effTarget: 0
+    range: 150
+    bullet: {fileID: 0}
+    bulletDir: 0
+    angleOffsetRange: {x: 0, y: 0}
+    offset: {x: 0, y: 0}
+  - id: 1
+    type: 1
+    buff: {fileID: 0}
+    buffStacks: 1
+    effTarget: 0
+    range: 150
+    bullet: {fileID: 11400000, guid: a098d84783a64c343b81b1a1ba1e5222, type: 2}
+    bulletDir: 1
+    angleOffsetRange: {x: 0, y: 0}
+    offset: {x: 0, y: 0}

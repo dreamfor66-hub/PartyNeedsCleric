@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Active_Warrior_Whirlwind
+  m_EditorClassIdentifier: 
+  skillId: Skill_Active_Warrior_Whirlwind
+  skillName: "\uD720\uC708\uB4DC"
+  icon: {fileID: 21300000, guid: 7dd351d0c5016434b9be9f4ac60d8099, type: 3}
+  skillScript: "\uBC1B\uC544\uB77C!!"
+  useType: 1
+  skillTags: 0
+  manaCost: 0
+  cooldown: 15
+  initialCooldown: 7.5
+  conditions: []
+  useCasting: 1
+  castingTime: 1
+  description: "6\uCD08 \uB3D9\uC548 \uC8FC\uBCC0 \uC801\uB4E4\uC744 \uBAA8\uB450
+    \uACF5\uACA9\uD558\uBA70, \uAC00\uC7A5 \uAC00\uAE4C\uC6B4 \uC801\uC744 \uD5A5\uD574
+    \uC774\uB3D9\uD569\uB2C8\uB2E4.\r\n\uC2DC\uC804 \uC911 \uC288\uD37C\uC544\uBA38"
+  targetType: 2
+  radius: 9999
+  teamType: 1
+  effects:
+  - type: 6
+    buff: {fileID: 11400000, guid: 60b8c5166267e204799fa8d731f1197a, type: 2}
+    bullet: {fileID: 0}
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 11400000, guid: c7c8a234c91314a48a2bc8958296eec3, type: 2}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: 6ac17904fc585d944aeca9a40e2d6694, type: 2}

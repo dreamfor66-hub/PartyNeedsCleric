@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Manual_Bard_Lullaby
+  m_EditorClassIdentifier: 
+  skillName: "\uC790\uC7A5\uAC00 (\uBBF8\uAD6C\uD604)"
+  icon: {fileID: 21300000, guid: c990bfb7faff7e542afdbc9ef7b210d5, type: 3}
+  skillScript: 
+  useType: 0
+  skillTags: 0
+  manaCost: 10
+  cooldown: 3.5
+  initialCooldown: 0
+  useCasting: 1
+  castingTime: 1
+  description: "[\uCC44\uB110\uB9C1 5\uCD08] #\uC7AC\uC0DD\n1\uCD08 \uB9C8\uB2E4,
+    \uBAA8\uB4E0 \uC801\uAD70\uC744 20% \uB290\uB9AC\uAC8C \uB9CC\uB4ED\uB2C8\uB2E4.
+    5\uC2A4\uD0DD \uC2DC, 20\uCD08\uAC04 \uB300\uC0C1\uC744 \uC7A0\uB4E6 \uC0C1\uD0DC\uB85C
+    \uB9CC\uB4ED\uB2C8\uB2E4.\n\uC774 \uD6A8\uACFC\uB294 \uD53C\uACA9 \uC2DC \uC0AC\uB77C\uC9D1\uB2C8\uB2E4."
+  targetType: 2
+  radius: 9999
+  teamType: 1
+  effects:
+  - type: 0
+    buff: {fileID: 0}
+    bullet: {fileID: 0}
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: c51f638f93143d842adefb5273db1bb3, type: 2}

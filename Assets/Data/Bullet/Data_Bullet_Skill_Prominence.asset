@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c4335cae4782a346bda2c93856a9fc7, type: 3}
+  m_Name: Data_Bullet_Skill_Prominence
+  m_EditorClassIdentifier: 
+  sprite: {fileID: 21300000, guid: 02761c6aa3ea9a74ebc885b19242c9ec, type: 3}
+  type: 0
+  speed: 150
+  accel: -130
+  radius: 10
+  lifeTime: 2
+  despawnBy: 1
+  arriveByDuration: 0
+  arriveDuration: 1
+  orbitRange: 2
+  orbitId: 0
+  followSpeed: 10
+  homingDetectAngle: 360
+  homingRotateCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 100
+      inSlope: -14.023879
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.01
+      value: 100
+      inSlope: -0
+      outSlope: -99999.984
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.011
+      value: 0
+      inSlope: -99999.984
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0
+      outSlope: 0
+      tangentMode: 69
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  maxPierceCount: 0
+  rehitInterval: 10
+  hitData:
+    hitId: 1
+    hitFilter: 1
+    hitFxType: 20
+    attackMultiplier: 1
+    knockbackPower: 0
+    knockbackDirectionWeight: 0
+    hitApplyBuffs:
+    - buff: {fileID: 11400000, guid: 5807d3bdaecb65c43994233e87429826, type: 2}
+      count: 10
+    hitStop: 0
+    ignoreKnockbackDirection: 0
+  hitBoxes:
+  - startFrame: 0
+    endFrame: 100
+    radius: 10
+    offset: {x: 0, y: 0}
+    hitBoxGroup: 0
+    hitInterval: 0
+  reactions:
+  - triggerType: 0
+    value: 0
+    reactionType: 1
+    bulletData: {fileID: 11400000, guid: c28f4caba1a0f7841a82b6bbf65379d0, type: 2}
+    angleOffsetRange: {x: 0, y: 0}
+    vfxPrefab: {fileID: 1523967898144722327, guid: 9f84658f86727d84c843c99e7b4c6220, type: 3}
+    offset: {x: 0, y: 0}
+    offsetAngle: 0
+  - triggerType: 2
+    value: 0
+    reactionType: 0
+    bulletData: {fileID: 11400000, guid: 9aa341689d50cbb43a5b233a13339f53, type: 2}
+    angleOffsetRange: {x: 0, y: 0}
+    vfxPrefab: {fileID: 0}
+    offset: {x: 0, y: 0}
+    offsetAngle: 0

@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0d03a163d76cc478c5b7e0a1d69572, type: 3}
+  m_Name: Data_Buff_Skill_Passive_LastStand
+  m_EditorClassIdentifier: 
+  buffId: Buff_Skill_Passive_SpdUp
+  useVisual: 0
+  icon: {fileID: 0}
+  visualType: 0
+  buffName: 
+  buffDesc: 
+  tags: 
+  abilities:
+  - trigger: 100
+    triggerCount: 1
+    requiredHitFilter: 0
+    condition: 0
+    conditionValue: 0
+    conditionBuffTag: 0
+    conditionNegative: 0
+    target: 10
+    useRange: 0
+    targetRange: 0
+    effect: 102
+    effectBuffTag: 0
+    effectValue: 5
+    effectCount: 1
+    formulas: []
+    characterData: {fileID: 0}
+    bulletData: {fileID: 0}
+    buffToAdd: {fileID: 0}
+    offset: {x: 0, y: 0}
+    range: 0
+    removeBuffId: 
+    direction: 0
+    angleOffsetRange: {x: 0, y: 0}
+    teamSelector: 0
+  removeCondition: 0
+  duration: 10
+  triggerCount: 1
+  duplicatePolicy: 0
+  maxStacks: 99
+  vfxList: []

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39b0af2adc4b06f4a9c322c178c0d223, type: 3}
+  m_Name: EquipmentOption_Yellow_HpUp
+  m_EditorClassIdentifier: 
+  id: EquipmentOption_Yellow_HpUp
+  desc: "\uCCB4\uB825 \uC99D\uAC00"
+  optionType: 1
+  statType: 5
+  skillTags: 0
+  hitFlags: 0
+  targetTags: 0
+  valueRange: {x: 5, y: 10}

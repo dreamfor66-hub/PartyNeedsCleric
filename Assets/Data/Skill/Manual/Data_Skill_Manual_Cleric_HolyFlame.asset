@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Manual_Cleric_HolyFlame
+  m_EditorClassIdentifier: 
+  skillName: "\uC2E0\uC131\uD55C \uBD88\uAE38"
+  icon: {fileID: 21300000, guid: eef44dd1bf545c34682a2832bde3fb6d, type: 3}
+  skillScript: 
+  useType: 0
+  skillTags: 0
+  manaCost: 20
+  cooldown: 10
+  initialCooldown: 0
+  useCasting: 0
+  castingTime: 1
+  description: "\uC801\uAD70 1\uCCB4\uC5D0\uAC8C \uD654\uC0C1\uC744 10 \uC785\uD799\uB2C8\uB2E4"
+  targetType: 0
+  radius: 150
+  teamType: 2
+  effects:
+  - type: 0
+    buff: {fileID: 11400000, guid: 5807d3bdaecb65c43994233e87429826, type: 2}
+    bullet: {fileID: 0}
+    buffCount: 10
+    removeTag: 0
+    character: {fileID: 11400000, guid: 832c486a875940845852ecc833537a08, type: 2}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}

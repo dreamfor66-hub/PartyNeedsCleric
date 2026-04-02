@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813fa3d6c1b9c1448a50f2ef5ee7c952, type: 3}
+  m_Name: Data_Character_Enemy_GhostKing
+  m_EditorClassIdentifier: 
+  portrait: {fileID: 0}
+  sprites:
+    anim_idleFront: {fileID: 21300000, guid: db1cd267468ee2346b7ad6f55780f57f, type: 3}
+    anim_idleBack: {fileID: 21300000, guid: 1a79bdf475c92a2428e940e6f402609a, type: 3}
+    anim_attackFront: {fileID: 21300000, guid: d4180680549762245857b4ee006ccb56, type: 3}
+    anim_attackBack: {fileID: 21300000, guid: 9129e9051528d854da4e6598fe83d6ce, type: 3}
+    anim_die: {fileID: 21300000, guid: 182cc3e71b9fac74b95af6bbe95c4ed3, type: 3}
+  isBoss: 1
+  characterType: 1
+  rangeRadius: 150
+  fsmData: {fileID: 11400000, guid: cfd261fb513f7524bb0418af80ff0de8, type: 2}
+  destroyOnDie: 0
+  targettable: 1
+  radius: 20
+  mass: 20
+  baseAtk: 100
+  baseHp: 5000
+  moveSpeed: 50
+  baseMana: 100
+  baseManaRegen: 0
+  baseHitData:
+    hitFilter: 2
+    attackMultiplier: 1
+    knockbackPower: 1000
+    hitStop: 0.1
+    ignoreKnockbackDirection: 0
+  baseBulletData: {fileID: 0}
+  bulletCooldown: 1
+  StartBuffs:
+  - buff: {fileID: 11400000, guid: 63f3f41053b5434469d4364bd9011972, type: 2}
+    count: 1
+  StartSkills: []

@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813fa3d6c1b9c1448a50f2ef5ee7c952, type: 3}
+  m_Name: Data_Totem_Player_Cleric_LifeLinker
+  m_EditorClassIdentifier: 
+  characterName: "\uB77C\uC774\uD504 \uB9C1\uCEE4"
+  characterDesc: "2\uCD08 \uB9C8\uB2E4, \uBC94\uC704 \uB0B4\uC758 \uAC00\uC7A5 \uAC00\uAE4C\uC6B4
+    \uC544\uAD70\uC744 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
+  portrait: {fileID: 0}
+  icon: {fileID: 21300000, guid: bce513b671dc48c45adea0ebb9c5f2f4, type: 3}
+  sprites:
+    anim_idleFront: {fileID: 21300000, guid: bce513b671dc48c45adea0ebb9c5f2f4, type: 3}
+    anim_idleBack: {fileID: 21300000, guid: bce513b671dc48c45adea0ebb9c5f2f4, type: 3}
+    anim_attackFront: {fileID: 21300000, guid: bce513b671dc48c45adea0ebb9c5f2f4, type: 3}
+    anim_attackBack: {fileID: 21300000, guid: bce513b671dc48c45adea0ebb9c5f2f4, type: 3}
+    anim_die: {fileID: 21300000, guid: bce513b671dc48c45adea0ebb9c5f2f4, type: 3}
+  isBoss: 0
+  characterType: 2
+  rangeRadius: 150
+  fsmData: {fileID: 0}
+  destroyOnDie: 1
+  targettable: 1
+  radius: 10
+  mass: 999
+  baseAtk: 10
+  baseHp: 500
+  moveSpeed: 0
+  baseMana: 100
+  baseManaRegen: 0
+  baseHitData:
+    hitFilter: 2
+    attackMultiplier: 1
+    knockbackPower: 50
+    hitStop: 0.05
+    ignoreKnockbackDirection: 0
+  baseBulletData: {fileID: 0}
+  bulletCooldown: 1
+  StartBuffs:
+  - buff: {fileID: 11400000, guid: de45abcf84629e940adadfc03a86b350, type: 2}
+    count: 1
+  StartSkills: []

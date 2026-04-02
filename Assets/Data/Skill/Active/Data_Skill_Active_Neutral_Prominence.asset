@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Active_Neutral_Prominence
+  m_EditorClassIdentifier: 
+  skillId: Skill_Active_Neutral_Prominence
+  skillName: "\uD64D\uC5FC"
+  icon: {fileID: 21300000, guid: da978165f4d634b4690415b484de1fca, type: 3}
+  skillScript: "\uBC1B\uC544\uB77C!!"
+  useType: 0
+  skillTags: 0
+  manaCost: 0
+  cooldown: 0
+  initialCooldown: 0
+  conditions: []
+  useCasting: 1
+  castingTime: 1
+  description: "\uC9C0\uC815 \uC704\uCE58\uAE4C\uC9C0 \uB0A0\uC544\uAC00\uB294 \uD654\uC5FC\uAD6C\uCCB4\uB97C
+    \uB0A0\uB9BD\uB2C8\uB2E4.\n\uD53C\uACA9 \uB41C \uC801\uC740 10% \uD655\uB960\uB85C
+    \uD654\uC0C1\uC744 10 \uC785\uC2B5\uB2C8\uB2E4."
+  targetType: 1
+  radius: 0
+  teamType: 3
+  effects:
+  - type: 1
+    buff: {fileID: 11400000, guid: 60b8c5166267e204799fa8d731f1197a, type: 2}
+    bullet: {fileID: 11400000, guid: 85887164144a96749a946cc76fb1d044, type: 2}
+    useUiStartPosition: 0
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses: []

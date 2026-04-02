@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5d387604ba12444dbc0f761d918adfa, type: 3}
+  m_Name: Data_Action_Active_Warrior_Whirlwind
+  m_EditorClassIdentifier: 
+  totalFrame: 250
+  movementList:
+  - startFrame: 10
+    endFrame: 240
+    startValue: 75
+    endValue: 75
+    applyHaste: 1
+  rotationList:
+  - startFrame: 10
+    endFrame: 240
+    rotationType: 1
+    value: 100
+  - startFrame: 30
+    endFrame: 40
+    rotationType: 1
+    value: -1000
+  - startFrame: 60
+    endFrame: 70
+    rotationType: 1
+    value: -1000
+  - startFrame: 150
+    endFrame: 160
+    rotationType: 1
+    value: -1000
+  - startFrame: 200
+    endFrame: 210
+    rotationType: 1
+    value: -1000
+  hitBoxes:
+  - startFrame: 0
+    endFrame: 240
+    radius: 30
+    offset: {x: 0, y: 0}
+    hitBoxGroup: 0
+    hitId: 1
+    hitInterval: 0.2
+  - startFrame: 240
+    endFrame: 250
+    radius: 60
+    offset: {x: 0, y: 0}
+    hitBoxGroup: 1
+    hitId: 2
+    hitInterval: 0
+  hits:
+  - hitId: 1
+    hitFilter: 2
+    hitFxType: 20
+    attackMultiplier: 0.25
+    knockbackPower: 300
+    hitApplyBuffs: []
+    hitStop: 0.07
+    ignoreKnockbackDirection: 0
+  - hitId: 2
+    hitFilter: 2
+    hitFxType: 20
+    attackMultiplier: 1
+    knockbackPower: 600
+    hitApplyBuffs: []
+    hitStop: 0.05
+    ignoreKnockbackDirection: 0
+  spawnBulletList: []
+  buffList: []
+  spawnCharacterList: []
+  restoreList: []
+  vfxList:
+  - frame: 1
+    vfxPrefab: {fileID: -4491839731629354362, guid: f2af4c6c29abffe458dea8f63dca5935, type: 3}
+    offset: {x: 0, y: 0}
+    offsetAngle: 0
+  - frame: 240
+    vfxPrefab: {fileID: 8075864131680724342, guid: d18cf7b81aa3ca848a228e21329fcef5, type: 3}
+    offset: {x: 0, y: 0}
+    offsetAngle: 0
+  autoCorrectionType: 0

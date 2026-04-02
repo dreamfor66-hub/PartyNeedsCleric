@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0d03a163d76cc478c5b7e0a1d69572, type: 3}
+  m_Name: Data_Buff_Skill_LifeLinker_Heal
+  m_EditorClassIdentifier: 
+  buffId: Buff_Skill_LifeLinker_Heal
+  useVisual: 0
+  icon: {fileID: 0}
+  visualType: 0
+  buffName: 
+  buffDesc: 
+  tags: 
+  abilities:
+  - trigger: 103
+    triggerCount: 2
+    requiredHitFilter: 3
+    condition: 0
+    conditionValue: 0
+    conditionBuffTag: 0
+    conditionNegative: 0
+    target: 12
+    useRange: 1
+    targetRange: 150
+    effect: 201
+    effectBuffTag: 0
+    effectValue: 100
+    effectCount: 3
+    formulas: []
+    characterData: {fileID: 11400000, guid: eb461ed0515fef749b3b246d8a68a0bd, type: 2}
+    bulletData: {fileID: 11400000, guid: 9e58997fcbdd8754c9a6009f5916d99d, type: 2}
+    buffToAdd: {fileID: 11400000, guid: 49473fcf7ef830f4cbd11d5f7d1adf03, type: 2}
+    offset: {x: 300, y: 0}
+    range: 100
+    removeBuffId: 
+    direction: 4
+    angleOffsetRange: {x: -30, y: 30}
+    teamSelector: 0
+  removeCondition: 0
+  duration: 5
+  triggerCount: 1
+  duplicatePolicy: 0
+  maxStacks: 99
+  vfxList: []

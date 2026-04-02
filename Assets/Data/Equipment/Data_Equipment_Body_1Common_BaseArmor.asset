@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a4945bf27381d4bb643f952a5e8ae6, type: 3}
+  m_Name: Data_Equipment_Body_1Common_BaseArmor
+  m_EditorClassIdentifier: 
+  id: Equipment_Body_BaseArmor
+  sprite: {fileID: 21300000, guid: 574af56b8e11c6f429f301b07af64cf3, type: 3}
+  equipmentName: "\uAC00\uC8FD \uC0C1\uC758"
+  desc: "\uD3C9\uBC94\uD55C \uAC00\uC8FD \uAC11\uC637. \uC544\uBB34\uB7F0 \uD6A8\uACFC\uAC00
+    \uC5C6\uB2E4."
+  rarity: 0
+  slotType: 2
+  buffs: []
+  statType1: 1
+  statValueRange1: {x: 30, y: 60}
+  statType2: 0
+  statValueRange2: {x: 0, y: 0}
+  skillReplaces: []
+  RedMaxCount: 0
+  BlueMaxCount: 0
+  GreenMaxCount: 3
+  YellowMaxCount: 0

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Active_Ranger_MultiShot
+  m_EditorClassIdentifier: 
+  skillId: Skill_Active_Ranger_MultiShot
+  skillName: "\uBA40\uD2F0\uC0F7"
+  icon: {fileID: 21300000, guid: b7849d0050471a94fb0140c3134cce79, type: 3}
+  skillScript: "\uC8FD\uC5B4\uB77C !!"
+  useType: 1
+  skillTags: 0
+  manaCost: 0
+  cooldown: 8
+  initialCooldown: 4
+  conditions:
+  - conditionType: 0
+    equalityType: 0
+    value: 500
+  useCasting: 1
+  castingTime: 1
+  description: "\uBD80\uCC44\uAF34 \uBAA8\uC591\uC73C\uB85C \uD654\uC0B4\uC744 7\uAC1C
+    \uBC1C\uC0AC\uD569\uB2C8\uB2E4."
+  targetType: 2
+  radius: 9999
+  teamType: 1
+  effects:
+  - type: 6
+    buff: {fileID: 11400000, guid: 60b8c5166267e204799fa8d731f1197a, type: 2}
+    bullet: {fileID: 0}
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 11400000, guid: 75f67c8fc7b3c2c4fa1e5316a176c260, type: 2}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: 71e07effc3fa0b74a808bfe223611eeb, type: 2}
+  - {fileID: 11400000, guid: 31d84dc3e960f1e44b93e605f6597b35, type: 2}
+  - {fileID: 11400000, guid: 789c9ee1ad4bbcd4eac0878c3edd08e5, type: 2}

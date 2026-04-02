@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Manual_Druid_Carnivory
+  m_EditorClassIdentifier: 
+  skillName: "\uC721\uC2DD\uD654 (\uBBF8\uAD6C\uD604)"
+  icon: {fileID: 21300000, guid: 6d9d550dc29fb7f4ba555fda55406df2, type: 3}
+  skillScript: 
+  useType: 0
+  skillTags: 0
+  manaCost: 10
+  cooldown: 3.5
+  initialCooldown: 0
+  useCasting: 1
+  castingTime: 1
+  description: "\uC544\uAD70 1\uCCB4\uC5D0 \uACF5\uACA9\uB825 10% \uC99D\uAC00, \uC774\uB3D9\uC18D\uB3C4
+    10% \uC99D\uAC00 \uD6A8\uACFC\uB97C \uC90D\uB2C8\uB2E4. \uC774 \uD6A8\uACFC\uB294
+    10\uCD08\uAC04 \uC9C0\uC18D\uB429\uB2C8\uB2E4.\n\uD480\uBC2D\uC774 \uC788\uB2E4\uBA74,
+    \"1\uCD08 \uB9C8\uB2E4 \uD480\uBC2D\uC5D0 \uB2FF\uC544\uC788\uB294 \uC801\uC5D0\uAC8C
+    \uACF5\uACA9\uB825\uC758 50% \uD53C\uD574\uB97C \uC90D\uB2C8\uB2E4.\" \uD6A8\uACFC\uB97C
+    \uCD94\uAC00\uD569\uB2C8\uB2E4."
+  targetType: 1
+  radius: 40
+  teamType: 3
+  effects:
+  - type: 3
+    buff: {fileID: 0}
+    bullet: {fileID: 0}
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: 234948f64cd72764ba40f5504271f453, type: 2}

@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813fa3d6c1b9c1448a50f2ef5ee7c952, type: 3}
+  m_Name: Data_Character_Commander_Cleric
+  m_EditorClassIdentifier: 
+  characterName: "\uD790\uB7EC"
+  characterDesc: "\uC544\uAD70\uC744 \uCE58\uC720\uD558\uACE0, \uBCF4\uD638\uD558\uB294\uB370\uC5D0
+    \uD2B9\uD654\uB418\uC5B4\uC788\uB294 \uD074\uB798\uC2A4\uC785\uB2C8\uB2E4.\n\uD654\uB825,
+    \uC720\uC9C0\uB825 \uC5B4\uB290\uCABD\uC5D0\uC11C\uB3C4 \uB4A4\uCC98\uC9C0\uC9C0
+    \uC54A\uACE0, \uC6D0\uD558\uB294 \uD0C0\uAC9F\uC5D0\uAC8C \uC989\uAC01\uC801\uC778
+    \uB300\uC751\uC774 \uAC00\uB2A5\uD569\uB2C8\uB2E4."
+  icon: {fileID: 21300000, guid: 6fdee37546ae20141bd33c54a513c1fe, type: 3}
+  sprites:
+    anim_idleFront: {fileID: 0}
+    anim_idleBack: {fileID: 0}
+    anim_attackFront: {fileID: 0}
+    anim_attackBack: {fileID: 0}
+    anim_die: {fileID: 0}
+  portrait: {fileID: 21300000, guid: b278e719ffdaca74c934a22857d6ce74, type: 3}
+  portrait2: {fileID: 21300000, guid: f7b37fdffb20a3a4ca565cc5aceb3ac6, type: 3}
+  isBoss: 0
+  characterType: 1000
+  rangeRadius: 150
+  fsmData: {fileID: 0}
+  destroyOnDie: 0
+  targettable: 0
+  characterTags: 0
+  radius: 10
+  mass: 5
+  baseAtk: 100
+  baseHp: 100
+  moveSpeed: 50
+  baseMana: 100
+  baseManaRegen: 1
+  baseResilience: 100
+  baseCooldownHaste: 100
+  baseCastingHaste: 100
+  baseHitData:
+    hitId: 1
+    hitFilter: 0
+    hitFxType: 10
+    attackMultiplier: 1
+    knockbackPower: 500
+    knockbackDirectionWeight: 0
+    hitApplyBuffs: []
+    hitStop: 0.1
+    ignoreKnockbackDirection: 0
+  baseBulletData: {fileID: 0}
+  bulletCooldown: 1
+  StartBuffs: []
+  BasicSkills:
+  - {fileID: 11400000, guid: e635d987b1db53644b3e3b45210f53b6, type: 2}
+  - {fileID: 11400000, guid: f1d11ad18a3cfe146a771a8213e6be27, type: 2}
+  - {fileID: 11400000, guid: 141b8b24819b6984f98d2d4e213ae8ca, type: 2}
+  StartSkills:
+  - {fileID: 11400000, guid: e635d987b1db53644b3e3b45210f53b6, type: 2}
+  - {fileID: 11400000, guid: f1d11ad18a3cfe146a771a8213e6be27, type: 2}
+  - {fileID: 11400000, guid: 41b3366ac86084d48902a3486f3a9cdf, type: 2}
+  - {fileID: 11400000, guid: 0d221cc2aeefdd84b962b7ecf1a84fb2, type: 2}
+  - {fileID: 11400000, guid: 3a2ad3605cd8eb647b3d651007fee68b, type: 2}

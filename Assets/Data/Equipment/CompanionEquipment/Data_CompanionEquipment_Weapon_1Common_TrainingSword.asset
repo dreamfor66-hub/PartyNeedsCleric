@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a4945bf27381d4bb643f952a5e8ae6, type: 3}
+  m_Name: Data_CompanionEquipment_Weapon_1Common_TrainingSword
+  m_EditorClassIdentifier: 
+  id: CompanionEquipment_Weapon_TrainingSword
+  sprite: {fileID: 21300000, guid: 95f9a22fffa673b4aaa5a5e09dc21431, type: 3}
+  equipmentName: "\uC5F0\uC2B5\uC6A9 \uAC80"
+  desc: "\uD3C9\uBC94\uD55C \uAC80. \uC544\uBB34\uB7F0 \uD6A8\uACFC\uAC00 \uC5C6\uB2E4."
+  rarity: 0
+  slotType: 0
+  buffs: []
+  statType1: 0
+  statValueRange1: {x: 30, y: 60}
+  statType2: 1
+  statValueRange2: {x: 0, y: 0}
+  skillReplaces: []
+  RedMaxCount: 0
+  BlueMaxCount: 0
+  GreenMaxCount: 0
+  YellowMaxCount: 0

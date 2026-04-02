@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a4945bf27381d4bb643f952a5e8ae6, type: 3}
+  m_Name: Data_Equipment_Weapon_1Common_TrainingBook
+  m_EditorClassIdentifier: 
+  id: Equipment_Weapon_TrainingBook
+  sprite: {fileID: 21300000, guid: 9bd7e778e34580b44be56eb2ba84ebe6, type: 3}
+  equipmentName: "\uC5F0\uC2B5\uC6A9 \uCC45"
+  desc: "\uD3C9\uBC94\uD55C \uCC45. \uC544\uBB34\uB7F0 \uD6A8\uACFC\uAC00 \uC5C6\uB2E4."
+  rarity: 0
+  slotType: 0
+  buffs: []
+  statType1: 0
+  statValue1: 100
+  statType2: 1
+  statValue2: 200
+  skillReplaces: []

@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0d03a163d76cc478c5b7e0a1d69572, type: 3}
+  m_Name: Data_Buff_Vamp
+  m_EditorClassIdentifier: 
+  buffId: Buff_Vamp
+  useVisual: 1
+  icon: {fileID: 21300000, guid: 0508c73cfae011c4496ac5e89ebf2476, type: 3}
+  visualType: 0
+  buffName: "\uD761\uD608"
+  buffDesc: "\uC774 \uBC84\uD504\uB97C \uAC00\uC9C4 \uCE90\uB9AD\uD130\uAC00 \uADFC\uC811
+    \uD53C\uD574\uB97C \uC785\uD788\uBA74, \uC2A4\uD0DD \uC218 \uB9CC\uD07C \uD68C\uBCF5\uD569\uB2C8\uB2E4."
+  tags: 
+  abilities:
+  - trigger: 200
+    triggerCount: 1
+    requiredHitFilter: 2
+    condition: 0
+    conditionValue: 0
+    conditionBuffTag: 0
+    conditionNegative: 0
+    target: 10
+    useRange: 0
+    targetRange: 0
+    effect: 201
+    effectBuffTag: 0
+    effectValue: 0
+    effectCount: 1
+    formulas:
+    - type: 0
+      entityName: 
+      value: 10
+    characterData: {fileID: 0}
+    bulletData: {fileID: 0}
+    buffToAdd: {fileID: 0}
+    offset: {x: 0, y: 0}
+    range: 0
+    removeBuffId: 
+    direction: 0
+    angleOffsetRange: {x: 0, y: 0}
+    teamSelector: 0
+  - trigger: 200
+    triggerCount: 1
+    requiredHitFilter: 2
+    condition: 0
+    conditionValue: 0
+    conditionBuffTag: 0
+    conditionNegative: 0
+    target: 0
+    useRange: 0
+    targetRange: 0
+    effect: 9000
+    effectBuffTag: 0
+    effectValue: 0
+    effectCount: 1
+    formulas:
+    - type: 0
+      entityName: 
+      value: 10
+    characterData: {fileID: 0}
+    bulletData: {fileID: 0}
+    buffToAdd: {fileID: 0}
+    offset: {x: 0, y: 0}
+    range: 0
+    removeBuffId: 
+    direction: 0
+    angleOffsetRange: {x: 0, y: 0}
+    teamSelector: 0
+  removeCondition: 1
+  duration: 10
+  triggerCount: 1
+  duplicatePolicy: 1
+  maxStacks: 99
+  vfxList:
+  - trigger: 9000
+    vfxPrefab: {fileID: 420195219215576075, guid: 619d0cf90a7ea3541a7fcab33fad7968, type: 3}

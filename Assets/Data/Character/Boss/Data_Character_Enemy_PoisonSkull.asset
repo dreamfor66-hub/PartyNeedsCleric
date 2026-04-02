@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813fa3d6c1b9c1448a50f2ef5ee7c952, type: 3}
+  m_Name: Data_Character_Enemy_PoisonSkull
+  m_EditorClassIdentifier: 
+  portrait: {fileID: 0}
+  sprites:
+    anim_idleFront: {fileID: 21300000, guid: 1ce4edd34afbf2442816de1bf5ec09e4, type: 3}
+    anim_idleBack: {fileID: 21300000, guid: e150cec2de006a743b9c07654eb76865, type: 3}
+    anim_attackFront: {fileID: 21300000, guid: bf2c08f475e06424dac5451c5c10fa73, type: 3}
+    anim_attackBack: {fileID: 21300000, guid: b6578ef91aef57948ae3dfbd05a23ea1, type: 3}
+    anim_die: {fileID: 21300000, guid: 4e9b7faac451f8747a86c98e23888138, type: 3}
+  useFSM: 1
+  characterType: 1
+  rangeRadius: 150
+  fsmData: {fileID: 11400000, guid: 70b0d2afa9c0b0d4db4ddd2c27c9d38e, type: 2}
+  radius: 20
+  mass: 10
+  baseAtk: 50
+  baseHp: 500
+  moveSpeed: 50
+  baseMana: 100
+  baseManaRegen: 0
+  baseHitData:
+    hitFilter: 2
+    attackMultiplier: 1
+    knockbackPower: 500
+    hitStop: 0.1
+    ignoreKnockbackDirection: 0
+  baseBulletData: {fileID: 0}
+  bulletCooldown: 1
+  StartBuffs: []
+  StartSkills: []

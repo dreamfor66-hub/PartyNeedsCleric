@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Manual_Neutral_Heal
+  m_EditorClassIdentifier: 
+  skillName: "\uD790"
+  icon: {fileID: 21300000, guid: 47c34be2d7e49b440ac75b76939251d2, type: 3}
+  skillScript: 
+  useType: 0
+  skillTags: 1
+  manaCost: 10
+  cooldown: 3.5
+  initialCooldown: 0
+  useCasting: 1
+  castingTime: 1
+  description: "\uC544\uAD70 1\uCCB4\uC758 \uCCB4\uB825\uC744 200 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
+  targetType: 0
+  radius: 50
+  teamType: 1
+  effects:
+  - type: 4
+    buff: {fileID: 11400000, guid: 903cd227de5314f4794b70e9aa7fe776, type: 2}
+    bullet: {fileID: 0}
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 0}
+    effectValue: 200
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: c51f638f93143d842adefb5273db1bb3, type: 2}
+  - {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}
+  - {fileID: 11400000, guid: 234948f64cd72764ba40f5504271f453, type: 2}

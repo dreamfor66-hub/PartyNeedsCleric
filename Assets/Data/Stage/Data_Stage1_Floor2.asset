@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 083f822594c2ab64586b264ccffb0a0e, type: 3}
+  m_Name: Data_Stage1_Floor2
+  m_EditorClassIdentifier: 
+  size: {x: 700, y: 500}
+  playerStartPoints:
+  - {x: 0, y: -96}
+  - {x: -64, y: -160}
+  - {x: 64, y: -160}
+  collisions:
+  - {x: -128, y: 192}
+  - {x: 128, y: 192}
+  - {x: -128, y: 224}
+  - {x: 128, y: 224}
+  waves:
+  - holdType: 0
+    value: 0
+    spawns:
+    - data: {fileID: 11400000, guid: 3ce3ccd4c6213574bacc299d4823d7f7, type: 2}
+      position: {x: -0, y: 160}

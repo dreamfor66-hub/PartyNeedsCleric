@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Manual_Neutral_GainRegen
+  m_EditorClassIdentifier: 
+  skillName: "\uC7AC\uC0DD\uC758 \uBC14\uB78C"
+  icon: {fileID: 21300000, guid: 3a3a02ef6416a064a9bb2595541a0583, type: 3}
+  skillScript: 
+  useType: 0
+  skillTags: 2
+  manaCost: 10
+  cooldown: 10
+  initialCooldown: 0
+  useCasting: 0
+  castingTime: 1
+  description: "\uC544\uAD70 1\uCCB4\uC5D0\uAC8C \uC7AC\uC0DD\uC744 5 \uC90D\uB2C8\uB2E4.
+    (\uC9C0\uC18D \uC2DC\uAC04 10\uCD08)"
+  targetType: 0
+  radius: 50
+  teamType: 1
+  effects:
+  - type: 0
+    buff: {fileID: 11400000, guid: f34e521deae15564baa810136fba89de, type: 2}
+    bullet: {fileID: 0}
+    buffCount: 5
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: c51f638f93143d842adefb5273db1bb3, type: 2}
+  - {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}
+  - {fileID: 11400000, guid: 234948f64cd72764ba40f5504271f453, type: 2}

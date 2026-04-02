@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b0d03a163d76cc478c5b7e0a1d69572, type: 3}
+  m_Name: Data_Buff_Stun
+  m_EditorClassIdentifier: 
+  buffId: Buff_Stun
+  useVisual: 1
+  icon: {fileID: 21300000, guid: 40446b7bf0f34524ba36de5e7f1acc90, type: 3}
+  visualType: 1
+  buffName: "\uAE30\uC808"
+  buffDesc: "\uC774 \uB514\uBC84\uD504\uB97C \uAC00\uC9C4 \uCE90\uB9AD\uD130\uB294
+    \uC774 \uB514\uBC84\uD504\uB97C \uAC00\uC9C4 \uB3D9\uC548 \uC2A4\uD0AC / \uACF5\uACA9
+    / \uC774\uB3D9\uC774 \uBD09\uC778\uB429\uB2C8\uB2E4.\n\uD53C\uACA9 \uC2DC, \uC774
+    \uB514\uBC84\uD504\uAC00 \uD574\uC81C\uB429\uB2C8\uB2E4."
+  tags: 
+  abilities:
+  - trigger: 100
+    triggerCount: 1
+    requiredHitFilter: 3
+    condition: 0
+    conditionValue: 0
+    conditionBuffTag: 0
+    conditionNegative: 0
+    target: 0
+    useRange: 0
+    targetRange: 0
+    effect: 9000
+    effectBuffTag: 0
+    effectValue: 0
+    effectCount: 1
+    formulas:
+    - type: 0
+      entityName: 
+      value: 10
+    characterData: {fileID: 0}
+    bulletData: {fileID: 0}
+    buffToAdd: {fileID: 0}
+    offset: {x: 0, y: 0}
+    range: 0
+    removeBuffId: 
+    direction: 0
+    angleOffsetRange: {x: 0, y: 0}
+    teamSelector: 0
+  removeCondition: 1
+  duration: 1.5
+  triggerCount: 1
+  duplicatePolicy: 2
+  maxStacks: 99
+  vfxList:
+  - trigger: 9000
+    vfxPrefab: {fileID: 2752453856142712702, guid: cce9afa6be8dae643be15442b88eb103, type: 3}

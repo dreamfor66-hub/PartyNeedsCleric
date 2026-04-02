@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 74ecbfa56d98bc541ab896e825b4db53, type: 3}
+  m_Name: EquipmentOptionPool_Yellow
+  m_EditorClassIdentifier: 
+  options:
+  - {fileID: 11400000, guid: 161b0494259035a469debbd18126779c, type: 2}
+  - {fileID: 11400000, guid: 104fcfa5efe0e2647a9870ed2b6c9239, type: 2}
+  - {fileID: 11400000, guid: 53f6a648f8d57664c98b25677ec6fa75, type: 2}

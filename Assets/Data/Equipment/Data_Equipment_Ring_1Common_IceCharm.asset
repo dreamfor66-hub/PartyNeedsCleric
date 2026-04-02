@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2a4945bf27381d4bb643f952a5e8ae6, type: 3}
+  m_Name: Data_Equipment_Ring_1Common_IceCharm
+  m_EditorClassIdentifier: 
+  id: Equipment_Ring_IceCharm
+  sprite: {fileID: 21300000, guid: 3f496f54c07bd81438f8dd0a41c5c399, type: 3}
+  equipmentName: "\uC5BC\uC74C \uC2A4\uD06C\uB864"
+  desc: "\uBB54\uAC00 \uAC15\uB825\uD55C \uC804\uB958\uAC00 \uB098\uC62C\uAC83\uAC19\uC544"
+  rarity: 0
+  slotType: 4
+  buffs: []
+  statType1: 0
+  statValue1: 100
+  statType2: 1
+  statValue2: 200
+  skillReplaces: []
