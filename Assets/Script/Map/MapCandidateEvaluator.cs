@@ -2,13 +2,15 @@ using System.Text;
 
 public static class MapCandidateEvaluator
 {
+    public const float HardRuleFailScore = -999999f;
+
     public static float Evaluate(GeneratedMapMeta meta, MapPreferenceProfile profile)
     {
         if (meta == null)
             return float.MinValue;
 
         if (!MapQualityEvaluator.PassHardRules(meta))
-            return -999999f;
+            return HardRuleFailScore;
 
         float qualityScore = MapQualityEvaluator.Evaluate(meta);
         float preferenceScore = EvaluatePreference(meta, profile);

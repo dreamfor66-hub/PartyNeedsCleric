@@ -39,6 +39,8 @@ public static class MapRandomGenerator
 
         MapGeneratedCandidate best = null;
         float bestScore = float.MinValue;
+        MapGeneratedCandidate bestPassing = null;
+        float bestPassingScore = float.MinValue;
 
         for (int i = 0; i < candidateCount; i++)
         {
@@ -50,9 +52,18 @@ public static class MapRandomGenerator
                 best = candidate;
                 bestScore = candidate.finalScore;
             }
+
+            if (candidate.finalScore > MapCandidateEvaluator.HardRuleFailScore)
+            {
+                if (bestPassing == null || candidate.finalScore > bestPassingScore)
+                {
+                    bestPassing = candidate;
+                    bestPassingScore = candidate.finalScore;
+                }
+            }
         }
 
-        return best;
+        return bestPassing ?? best;
     }
 
     private static MapGeneratedCandidate GenerateCandidate(
