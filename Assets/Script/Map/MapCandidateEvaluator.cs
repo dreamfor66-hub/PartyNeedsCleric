@@ -32,7 +32,7 @@ public static class MapCandidateEvaluator
                 continue;
 
             float bias = profile.GetBias(feature.key, 0f);
-            score += feature.value * bias;
+            score += ToPreferenceSignal(feature.key, feature.value) * bias;
         }
 
         return score;
@@ -62,7 +62,7 @@ public static class MapCandidateEvaluator
                     continue;
 
                 float bias = profile.GetBias(feature.key, 0f);
-                float contribution = feature.value * bias;
+                float contribution = ToPreferenceSignal(feature.key, feature.value) * bias;
                 preferenceTotal += contribution;
 
                 sb.AppendLine(
@@ -77,5 +77,19 @@ public static class MapCandidateEvaluator
         sb.AppendLine($"FinalScore = {final:0.###}");
 
         return sb.ToString();
+    }
+
+    private static float ToPreferenceSignal(string key, float rawValue)
+    {
+        if (key == "lane.count")
+            return UnityEngine.Mathf.Clamp(rawValue / 5f, 0f, 1f) - 0.5f;
+
+        if (key == "wave.count")
+            return UnityEngine.Mathf.Clamp(rawValue / 8f, 0f, 1f) - 0.5f;
+
+        if (key == "obstacle.centerBlock")
+            return rawValue > 0.5f ? 1f : -1f;
+
+        return UnityEngine.Mathf.Clamp(rawValue, 0f, 1f) - 0.5f;
     }
 }

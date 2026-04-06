@@ -10,6 +10,7 @@ public static class MapRandomGenerator
     private const float StartSafeRadius = 96f;
     private const float SpawnCollisionRadius = 32f;
     private const int DefaultCandidateCount = 12;
+    private const float CandidateTieBreakNoise = 0.025f;
 
     public static MapGeneratedCandidate GenerateBestFull(MapData source, MapPreferenceProfile profile, int candidateCount = DefaultCandidateCount)
     {
@@ -107,6 +108,9 @@ public static class MapRandomGenerator
         candidate.qualityScore = MapQualityEvaluator.Evaluate(candidate.meta);
         candidate.preferenceScore = MapCandidateEvaluator.EvaluatePreference(candidate.meta, profile);
         candidate.finalScore = MapCandidateEvaluator.Evaluate(candidate.meta, profile);
+
+        if (candidate.finalScore > MapCandidateEvaluator.HardRuleFailScore)
+            candidate.finalScore += Random.Range(-CandidateTieBreakNoise, CandidateTieBreakNoise);
     }
 
     private static GeneratedMapMeta BuildMeta(MapGeneratedCandidate candidate)
@@ -128,10 +132,23 @@ public static class MapRandomGenerator
         float halfW = size.x * 0.5f;
         float halfH = size.y * 0.5f;
 
-        float y = -halfH + GridSize * 2f;
-        float leftX = -halfW * 0.45f;
-        float midX = 0f;
-        float rightX = halfW * 0.45f;
+        float baseY = -halfH + GridSize * 2f;
+        float yJitter = Random.Range(-GridSize * 0.5f, GridSize * 1.5f);
+        float y = baseY + yJitter;
+
+        float centerX = Random.Range(-halfW * 0.1f, halfW * 0.1f);
+        float laneGap = Random.Range(halfW * 0.22f, halfW * 0.36f);
+        float sideJitter = Random.Range(-GridSize, GridSize);
+        float asymmetry = Random.Range(-GridSize * 0.5f, GridSize * 0.5f);
+
+        float leftX = centerX - laneGap + sideJitter;
+        float midX = centerX + Random.Range(-GridSize * 0.5f, GridSize * 0.5f);
+        float rightX = centerX + laneGap + asymmetry;
+
+        leftX = Mathf.Clamp(leftX, -halfW + GridSize, halfW - GridSize);
+        midX = Mathf.Clamp(midX, -halfW + GridSize, halfW - GridSize);
+        rightX = Mathf.Clamp(rightX, -halfW + GridSize, halfW - GridSize);
+        y = Mathf.Clamp(y, -halfH + GridSize, -halfH + GridSize * 4f);
 
         return new[]
         {
@@ -144,7 +161,7 @@ public static class MapRandomGenerator
     private static List<Vector2> GenerateCollisionPattern(Vector2 size, Vector2[] startPoints)
     {
         var result = new List<Vector2>();
-        int pattern = Random.Range(0, 5);
+        int pattern = Random.Range(0, 8);
 
         switch (pattern)
         {
@@ -170,10 +187,49 @@ public static class MapRandomGenerator
                 AddRect(result, new Vector2(64f, -32f), 2, 4);
                 AddRect(result, new Vector2(0f, 160f), 2, 2);
                 break;
+
+            case 5:
+                AddRect(result, new Vector2(-96f, 64f), 2, 3);
+                AddRect(result, new Vector2(0f, 128f), 1, 4);
+                AddRect(result, new Vector2(96f, 64f), 2, 3);
+                break;
+
+            case 6:
+                AddRect(result, new Vector2(-128f, -32f), 2, 2);
+                AddRect(result, new Vector2(-32f, 96f), 3, 2);
+                AddRect(result, new Vector2(96f, 160f), 2, 2);
+                break;
+
+            case 7:
+                AddRect(result, new Vector2(0f, 64f), 4, 1);
+                AddRect(result, new Vector2(-96f, 160f), 2, 2);
+                AddRect(result, new Vector2(128f, 0f), 1, 3);
+                break;
         }
 
+        AddRandomCollisionScatter(result, size, startPoints);
         RemoveNearStarts(result, startPoints, StartSafeRadius);
         return result.Distinct().ToList();
+    }
+
+    private static void AddRandomCollisionScatter(List<Vector2> result, Vector2 size, Vector2[] startPoints)
+    {
+        int extraCount = Random.Range(2, 9);
+        float halfW = size.x * 0.5f;
+        float halfH = size.y * 0.5f;
+
+        for (int i = 0; i < extraCount; i++)
+        {
+            Vector2 p = new Vector2(
+                Random.Range(-halfW + GridSize, halfW - GridSize),
+                Random.Range(-halfH + GridSize * 2f, halfH - GridSize));
+            p = Snap(p);
+
+            if (IsNearStarts(p, startPoints, StartSafeRadius))
+                continue;
+
+            result.Add(p);
+        }
     }
 
     private static List<WaveData> GenerateWaves(
@@ -184,7 +240,7 @@ public static class MapRandomGenerator
     {
         var waves = new List<WaveData>();
 
-        int waveCount = Random.Range(2, 5);
+        int waveCount = Random.Range(2, 7);
         for (int i = 0; i < waveCount; i++)
         {
             var wave = new WaveData();
@@ -195,7 +251,7 @@ public static class MapRandomGenerator
 
             wave.spawns = new List<SpawnEntry>();
 
-            int spawnCount = Random.Range(3, 8);
+            int spawnCount = Random.Range(3, 10);
             for (int s = 0; s < spawnCount; s++)
             {
                 var enemy = enemyPool[Random.Range(0, enemyPool.Count)];

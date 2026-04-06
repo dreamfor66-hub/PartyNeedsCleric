@@ -14,6 +14,8 @@ public class MapFeatureBias
 [CreateAssetMenu(menuName = "Game/Map/MapPreferenceProfile")]
 public class MapPreferenceProfile : ScriptableObject
 {
+    private const float MaxAbsBias = 2.5f;
+
     [Header("Learned Bias Memory")]
     public List<MapFeatureBias> learnedBias = new();
 
@@ -38,6 +40,7 @@ public class MapPreferenceProfile : ScriptableObject
 
         var entry = GetOrCreate(key);
         entry.bias += liked ? delta : -delta;
+        entry.bias = Mathf.Clamp(entry.bias, -MaxAbsBias, MaxAbsBias);
 
         if (liked)
             entry.likeCount++;
@@ -56,7 +59,8 @@ public class MapPreferenceProfile : ScriptableObject
             if (f == null || string.IsNullOrEmpty(f.key))
                 continue;
 
-            AddFeedback(f.key, liked, deltaPerUnit * f.value);
+            float centered = ToPreferenceSignal(f.key, f.value);
+            AddFeedback(f.key, liked, deltaPerUnit * centered);
         }
     }
 
@@ -89,5 +93,19 @@ public class MapPreferenceProfile : ScriptableObject
 
         learnedBias.Add(created);
         return created;
+    }
+
+    private static float ToPreferenceSignal(string key, float rawValue)
+    {
+        if (key == "lane.count")
+            return Mathf.Clamp(rawValue / 5f, 0f, 1f) - 0.5f;
+
+        if (key == "wave.count")
+            return Mathf.Clamp(rawValue / 8f, 0f, 1f) - 0.5f;
+
+        if (key == "obstacle.centerBlock")
+            return rawValue > 0.5f ? 1f : -1f;
+
+        return Mathf.Clamp(rawValue, 0f, 1f) - 0.5f;
     }
 }
