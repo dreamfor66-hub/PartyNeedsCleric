@@ -70,3 +70,4 @@ MonoBehaviour:
   equipmentOptionPoolGreen: {fileID: 11400000, guid: 2fa324dabe31e594e8f5d7360cc35eb4, type: 2}
   equipmentOptionColorYellow: {r: 1, g: 0.7591524, b: 0, a: 1}
   equipmentOptionPoolYellow: {fileID: 11400000, guid: a6b4805607bcf79438b9b650635919ca, type: 2}
+  mapPreferenceProfile: {fileID: 11400000, guid: 9322ad9581c0521428ddd9bfc450c6ae, type: 2}

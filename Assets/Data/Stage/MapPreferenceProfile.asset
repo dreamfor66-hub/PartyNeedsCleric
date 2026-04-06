@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3869a8e58b3974b4db8346973cec75ae, type: 3}
+  m_Name: MapPreferenceProfile
+  m_EditorClassIdentifier: 
+  learnedBias:
+  - key: layout.symmetry.lr
+    bias: -0.2909091
+    likeCount: 0
+    dislikeCount: 6
+  - key: layout.symmetry.tb
+    bias: -0.41590908
+    likeCount: 0
+    dislikeCount: 6
+  - key: layout.symmetry.none
+    bias: -0.48409092
+    likeCount: 0
+    dislikeCount: 6
+  - key: obstacle.density
+    bias: -0.14433596
+    likeCount: 0
+    dislikeCount: 6
+  - key: obstacle.centerBlock
+    bias: -0.9
+    likeCount: 0
+    dislikeCount: 6
+  - key: lane.count
+    bias: -2.55
+    likeCount: 0
+    dislikeCount: 6
+  - key: start.safety
+    bias: -0.32716605
+    likeCount: 0
+    dislikeCount: 6
+  - key: wave.count
+    bias: -1.8
+    likeCount: 0
+    dislikeCount: 6
+  - key: spawn.meleeRatio
+    bias: -0.5453572
+    likeCount: 0
+    dislikeCount: 6
+  - key: spawn.rangedRatio
+    bias: -0.35464287
+    likeCount: 0
+    dislikeCount: 6
+  - key: spawn.spacing.mean
+    bias: -0.21370533
+    likeCount: 0
+    dislikeCount: 6
+  - key: spawn.spacing.min
+    bias: -0.060359657
+    likeCount: 0
+    dislikeCount: 6
+  - key: spawn.cluster.score
+    bias: -0.26428574
+    likeCount: 0
+    dislikeCount: 6

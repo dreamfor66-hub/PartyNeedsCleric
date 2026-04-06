@@ -23,7 +23,7 @@ public class WaveData
 public class MapData : ScriptableObject
 {
     [Header("Map Size")]
-    public Vector2 size = new Vector2(300, 500);      // 전체 플레이 공간 (world 단위)
+    public Vector2 size = new Vector2(300, 500);
 
     [Header("시작점 123")]
     [TableList(AlwaysExpanded = false)]
@@ -31,9 +31,42 @@ public class MapData : ScriptableObject
 
     [Header("Collisions")]
     [TableList(AlwaysExpanded = false)]
-    public List<Vector2> collisions = new();        // 1x1 Collider 위치
+    public List<Vector2> collisions = new();
 
     [Header("Waves")]
     [TableList(AlwaysExpanded = false)]
     public List<WaveData> waves = new();
+
+    [Header("Generated Meta")]
+    [TableList(AlwaysExpanded = true)]
+    [ReadOnly]
+    public GeneratedMapMeta generatedMeta = new GeneratedMapMeta();
+
+    public void RebuildGeneratedMeta()
+    {
+        generatedMeta = MapFeatureExtractor.Extract(this);
+    }
+
+    public void RebuildGeneratedMetaIfNeeded()
+    {
+        if (generatedMeta == null)
+            generatedMeta = new GeneratedMapMeta();
+
+        RebuildGeneratedMeta();
+    }
+
+    public float GetFeature(string key, float defaultValue = 0f)
+    {
+        if (generatedMeta == null)
+            return defaultValue;
+
+        return generatedMeta.Get(key, defaultValue);
+    }
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        RebuildGeneratedMetaIfNeeded();
+    }
+#endif
 }

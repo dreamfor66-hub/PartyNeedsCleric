@@ -28,19 +28,23 @@ public class MapDataEditor : OdinEditor
 
     static List<CharacterData> enemyCharacters;
 
-    const float MinSimSize = 300f;
-    const float GRID_SIZE = 32f;   // ★ 32 단위 규칙 핵심
+    const float GRID_SIZE = 32f;
 
     protected override void OnEnable()
     {
         base.OnEnable();
         RefreshEnemyCharacters();
+
+        var map = target as MapData;
+        if (map != null)
+        {
+            map.RebuildGeneratedMetaIfNeeded();
+            EditorUtility.SetDirty(map);
+        }
     }
 
     public override void OnInspectorGUI()
     {
-        base.OnInspectorGUI();
-
         var map = (MapData)target;
 
         if (map.playerStartPoints == null || map.playerStartPoints.Length != 3)
@@ -52,6 +56,18 @@ public class MapDataEditor : OdinEditor
             map.playerStartPoints != null && map.playerStartPoints.Length > 1 ? map.playerStartPoints[1] : Vector2.zero,
             map.playerStartPoints != null && map.playerStartPoints.Length > 2 ? map.playerStartPoints[2] : Vector2.zero
             };
+            map.RebuildGeneratedMetaIfNeeded();
+            EditorUtility.SetDirty(map);
+        }
+
+        EditorGUI.BeginChangeCheck();
+
+        base.OnInspectorGUI();
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            map.RebuildGeneratedMetaIfNeeded();
+            EditorUtility.SetDirty(map);
         }
 
         GUILayout.Space(10);
@@ -63,8 +79,17 @@ public class MapDataEditor : OdinEditor
         GUILayout.Space(5);
         Rect simRect = DrawSimulationSpaceBackground(map);
 
+        GUILayout.Space(10);
+        DrawGenerationToolbar(map);
+
+        GUILayout.Space(10);
+        DrawMetaToolbar(map);
+
+        GUILayout.Space(10);
+        DrawScorePanel(map);
+
+  
         DrawGrid(map, simRect);
-        //DrawMapBorder(map, simRect);
         DrawCollisions(map, simRect);
         DrawStartPoints(map, simRect);
         DrawMonsters(map, simRect);
@@ -73,13 +98,84 @@ public class MapDataEditor : OdinEditor
 
         if (GUI.changed)
         {
+            map.RebuildGeneratedMetaIfNeeded();
             EditorUtility.SetDirty(map);
         }
     }
+    void DrawMetaToolbar(MapData map)
+    {
+        GUILayout.Label("Generated Meta", EditorStyles.boldLabel);
 
-    // ============================================================
-    // TOOLBARS
-    // ============================================================
+        EditorGUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Rebuild Meta", EditorStyles.miniButton))
+        {
+            map.RebuildGeneratedMetaIfNeeded();
+            EditorUtility.SetDirty(map);
+        }
+
+        if (GUILayout.Button("Log Meta", EditorStyles.miniButton))
+        {
+            if (map.generatedMeta != null && map.generatedMeta.features != null)
+            {
+                for (int i = 0; i < map.generatedMeta.features.Count; i++)
+                {
+                    var f = map.generatedMeta.features[i];
+                    Debug.Log($"{f.key} = {f.value}");
+                }
+            }
+        }
+
+        EditorGUILayout.EndHorizontal();
+    }
+
+    void DrawScorePanel(MapData map)
+    {
+        GUILayout.Label("Map Evaluation", EditorStyles.boldLabel);
+
+        var profile = GameVariables.Instance != null ? GameVariables.Instance.mapPreferenceProfile : null;
+        var meta = map.generatedMeta;
+
+        bool passHardRules = MapQualityEvaluator.PassHardRules(meta);
+        float qualityScore = MapQualityEvaluator.Evaluate(meta);
+        float preferenceScore = MapCandidateEvaluator.EvaluatePreference(meta, profile);
+        float finalScore = MapCandidateEvaluator.Evaluate(meta, profile);
+
+        EditorGUILayout.BeginVertical("box");
+
+        EditorGUILayout.LabelField("Hard Rules", passHardRules ? "PASS" : "FAIL");
+        EditorGUILayout.LabelField("Quality Score", qualityScore.ToString("0.###"));
+        EditorGUILayout.LabelField("Preference Score", preferenceScore.ToString("0.###"));
+        EditorGUILayout.LabelField("Final Score", finalScore.ToString("0.###"));
+
+        if (profile == null)
+            EditorGUILayout.HelpBox("GameVariables.mapPreferenceProfile is null.", MessageType.Warning);
+
+        EditorGUILayout.BeginHorizontal();
+
+        GUI.enabled = profile != null;
+        if (GUILayout.Button("Like"))
+        {
+            profile.AddFeedback(meta, true);
+            EditorUtility.SetDirty(profile);
+        }
+
+        if (GUILayout.Button("Dislike"))
+        {
+            profile.AddFeedback(meta, false);
+            EditorUtility.SetDirty(profile);
+        }
+        GUI.enabled = true;
+
+        EditorGUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Log Evaluation"))
+        {
+            Debug.Log(MapCandidateEvaluator.BuildDebugLog(meta, profile));
+        }
+
+        EditorGUILayout.EndVertical();
+    }
 
     void DrawEditModeToolbar()
     {
@@ -97,12 +193,12 @@ public class MapDataEditor : OdinEditor
             DrawMonsterPalette();
     }
 
-    MapEditMode DrawModeToggle(MapEditMode current, MapEditMode target, string label)
+    MapEditMode DrawModeToggle(MapEditMode current, MapEditMode targetMode, string label)
     {
-        bool on = current == target;
+        bool on = current == targetMode;
         bool pressed = GUILayout.Toggle(on, label, EditorStyles.miniButton);
         if (pressed && !on)
-            return target;
+            return targetMode;
         if (!pressed && on)
             return MapEditMode.None;
         return current;
@@ -178,6 +274,7 @@ public class MapDataEditor : OdinEditor
     {
         enemyCharacters = new List<CharacterData>();
         string[] guids = AssetDatabase.FindAssets("t:CharacterData", new[] { "Assets/Data/Character" });
+
         foreach (var guid in guids)
         {
             string path = AssetDatabase.GUIDToAssetPath(guid);
@@ -185,29 +282,23 @@ public class MapDataEditor : OdinEditor
             if (ch != null && ch.name.Contains("Enemy"))
                 enemyCharacters.Add(ch);
         }
+
         enemyCharacters = enemyCharacters.OrderBy(c => c.name).ToList();
     }
-
-    // ============================================================
-    // SIMULATION SPACE
-    // ============================================================
 
     Rect DrawSimulationSpaceBackground(MapData map)
     {
         var borderSize = 32;
-        float maxH = 600f + borderSize*2;  // 원하는 최대 높이
-        float maxW = 900f + borderSize*2;
+        float maxH = 600f + borderSize * 2;
+        float maxW = 900f + borderSize * 2;
 
         float worldW = map.size.x;
         float worldH = map.size.y;
-
         float worldRatio = worldW / worldH;
 
-        // 우선 높이를 제한
         float targetH = maxH;
         float targetW = targetH * worldRatio;
 
-        // 만약 width가 넘어가면 width 기준으로 재조정
         if (targetW > maxW)
         {
             targetW = maxW;
@@ -218,54 +309,6 @@ public class MapDataEditor : OdinEditor
         EditorGUI.DrawRect(r, new Color(0.12f, 0.12f, 0.12f));
         return r;
     }
-    void DrawMapBorder(MapData map, Rect rect)
-    {
-        float w = map.size.x;
-        float h = map.size.y;
-
-        float thickness = 16f; // 화면에 보이는 선 굵기 그대로
-
-        // 맵의 4 모서리 (world → screen)
-        Vector2 topLeft = WorldToScreen(new Vector2(-w * 0.5f, h * 0.5f), map.size, rect);
-        Vector2 topRight = WorldToScreen(new Vector2(w * 0.5f, h * 0.5f), map.size, rect);
-        Vector2 bottomRight = WorldToScreen(new Vector2(w * 0.5f, -h * 0.5f), map.size, rect);
-        Vector2 bottomLeft = WorldToScreen(new Vector2(-w * 0.5f, -h * 0.5f), map.size, rect);
-
-        Color c = Color.black;
-
-        // 위 라인: 맵 안쪽(아래 방향)으로만 thickness 만큼
-        EditorGUI.DrawRect(new Rect(
-            topLeft.x,
-            topLeft.y,
-            topRight.x - topLeft.x,
-            thickness
-        ), c);
-
-        // 아래 라인: 맵 안쪽(위 방향)으로만 thickness 만큼
-        EditorGUI.DrawRect(new Rect(
-            bottomLeft.x,
-            bottomLeft.y - thickness,
-            bottomRight.x - bottomLeft.x,
-            thickness
-        ), c);
-
-        // 왼쪽 라인: 맵 안쪽(오른쪽 방향)으로만 thickness 만큼
-        EditorGUI.DrawRect(new Rect(
-            topLeft.x,
-            topLeft.y,
-            thickness,
-            bottomLeft.y - topLeft.y
-        ), c);
-
-        // 오른쪽 라인: 맵 안쪽(왼쪽 방향)으로만 thickness 만큼
-        EditorGUI.DrawRect(new Rect(
-            topRight.x - thickness,
-            topRight.y,
-            thickness,
-            bottomRight.y - topRight.y
-        ), c);
-    }
-
 
     void DrawGrid(MapData map, Rect rect)
     {
@@ -289,7 +332,6 @@ public class MapDataEditor : OdinEditor
         Color major = new Color(0.25f, 0.25f, 0.25f);
         Color minor = new Color(0.18f, 0.18f, 0.18f);
 
-        // vertical
         for (int x = -halfX; x <= halfX; x++)
         {
             float sx = center.x + x * cell;
@@ -297,7 +339,6 @@ public class MapDataEditor : OdinEditor
             Handles.DrawLine(new Vector3(sx, rect.yMin, 0), new Vector3(sx, rect.yMax, 0));
         }
 
-        // horizontal
         for (int y = -halfY; y <= halfY; y++)
         {
             float sy = center.y - y * cell;
@@ -307,10 +348,6 @@ public class MapDataEditor : OdinEditor
 
         Handles.EndGUI();
     }
-
-    // ============================================================
-    // DRAW ELEMENTS
-    // ============================================================
 
     void DrawStartPoints(MapData map, Rect rect)
     {
@@ -344,7 +381,8 @@ public class MapDataEditor : OdinEditor
 
     void DrawCollisions(MapData map, Rect rect)
     {
-        if (map.collisions == null) return;
+        if (map.collisions == null)
+            return;
 
         Handles.BeginGUI();
 
@@ -362,11 +400,13 @@ public class MapDataEditor : OdinEditor
 
     void DrawMonsters(MapData map, Rect rect)
     {
-        if (map.waves == null || map.waves.Count == 0) return;
+        if (map.waves == null || map.waves.Count == 0)
+            return;
 
         selectedWaveIndex = Mathf.Clamp(selectedWaveIndex, 0, map.waves.Count - 1);
         var wave = map.waves[selectedWaveIndex];
-        if (wave.spawns == null) return;
+        if (wave.spawns == null)
+            return;
 
         Handles.BeginGUI();
         float cell = GetCellSize(map.size, rect);
@@ -398,11 +438,59 @@ public class MapDataEditor : OdinEditor
 
         Handles.EndGUI();
     }
+    void DrawGenerationToolbar(MapData map)
+    {
+        GUILayout.Label("Generation", EditorStyles.boldLabel);
 
-    // ============================================================
-    // INPUT HANDLING
-    // ============================================================
+        var profile = GameVariables.Instance != null ? GameVariables.Instance.mapPreferenceProfile : null;
 
+        EditorGUILayout.BeginHorizontal();
+
+        if (GUILayout.Button("Generate Random", EditorStyles.miniButton))
+        {
+            var candidate = MapRandomGenerator.GenerateBestFull(map, profile);
+            ApplyCandidateToMap(map, candidate, "Generate Random Map");
+        }
+
+        if (GUILayout.Button("Reroll Layout", EditorStyles.miniButton))
+        {
+            var candidate = MapRandomGenerator.GenerateBestLayoutOnly(map, profile);
+            ApplyCandidateToMap(map, candidate, "Reroll Layout");
+        }
+
+        if (GUILayout.Button("Reroll Waves", EditorStyles.miniButton))
+        {
+            var candidate = MapRandomGenerator.GenerateBestWavesOnly(map, profile);
+            ApplyCandidateToMap(map, candidate, "Reroll Waves");
+        }
+
+        EditorGUILayout.EndHorizontal();
+
+        EditorGUILayout.BeginHorizontal();
+
+        GUILayout.FlexibleSpace();
+
+        GUI.enabled = profile != null;
+        if (GUILayout.Button("Clear Preference Memory", EditorStyles.miniButton, GUILayout.Width(160f)))
+        {
+            bool confirmed = EditorUtility.DisplayDialog(
+                "Clear Preference Memory",
+                "정말로 학습된 맵 선호 데이터를 전부 초기화할까요?\n이 작업은 되돌리기 어렵습니다.",
+                "초기화",
+                "취소"
+            );
+
+            if (confirmed)
+            {
+                profile.ClearMemory();
+                EditorUtility.SetDirty(profile);
+                AssetDatabase.SaveAssets();
+            }
+        }
+        GUI.enabled = true;
+
+        EditorGUILayout.EndHorizontal();
+    }
     void HandleSimulationEvents(MapData map, Rect rect)
     {
         Event e = Event.current;
@@ -410,14 +498,10 @@ public class MapDataEditor : OdinEditor
         if (!rect.Contains(e.mousePosition))
             return;
 
-        // ★ 32단위 grid snap 핵심
         Vector2 gridPos = SnapToGrid(ScreenToWorld(e.mousePosition, map.size, rect));
 
         switch (editMode)
         {
-            case MapEditMode.None:
-                break;
-
             case MapEditMode.StartPointMove:
                 HandleStartPointEvents(map, rect, e, gridPos);
                 break;
@@ -454,7 +538,7 @@ public class MapDataEditor : OdinEditor
         }
         else if (e.type == EventType.MouseDrag && draggingStartPoint)
         {
-            Undo.RecordObject(map, "Move StartPoint");
+            MarkDirty(map, "Move StartPoint");
             map.playerStartPoints[draggingStartIndex] = gridPos;
             e.Use();
         }
@@ -470,7 +554,7 @@ public class MapDataEditor : OdinEditor
         {
             Undo.RecordObject(map, "Add Wave");
             map.waves = new List<WaveData>();
-            map.waves.Add(new WaveData()
+            map.waves.Add(new WaveData
             {
                 holdType = WaveHoldType.HoldUntilCount,
                 value = 0,
@@ -478,6 +562,8 @@ public class MapDataEditor : OdinEditor
             });
 
             selectedWaveIndex = 0;
+            map.RebuildGeneratedMetaIfNeeded();
+            EditorUtility.SetDirty(map);
         }
 
         var wave = map.waves[selectedWaveIndex];
@@ -492,7 +578,7 @@ public class MapDataEditor : OdinEditor
             {
                 if (existing != null)
                 {
-                    Undo.RecordObject(map, "Remove Monster");
+                    MarkDirty(map, "Remove Monster");
                     wave.spawns.Remove(existing);
                 }
                 e.Use();
@@ -507,7 +593,7 @@ public class MapDataEditor : OdinEditor
                 }
                 else if (selectedMonster != null)
                 {
-                    Undo.RecordObject(map, "Add Monster");
+                    MarkDirty(map, "Add Monster");
                     wave.spawns.Add(new SpawnEntry
                     {
                         data = selectedMonster,
@@ -519,11 +605,9 @@ public class MapDataEditor : OdinEditor
         }
         else if (e.type == EventType.MouseDrag && draggingSpawn)
         {
-            Undo.RecordObject(map, "Move Monster");
-
-            if (FindSpawnAt(wave, gridPos) == null ||
-                FindSpawnAt(wave, gridPos) == draggingSpawnEntry)
+            if (FindSpawnAt(wave, gridPos) == null || FindSpawnAt(wave, gridPos) == draggingSpawnEntry)
             {
+                MarkDirty(map, "Move Monster");
                 draggingSpawnEntry.position = gridPos;
             }
             e.Use();
@@ -547,7 +631,7 @@ public class MapDataEditor : OdinEditor
             {
                 if (idx < 0)
                 {
-                    Undo.RecordObject(map, "Add Collision");
+                    MarkDirty(map, "Add Collision");
                     map.collisions.Add(gridPos);
                 }
                 e.Use();
@@ -556,7 +640,7 @@ public class MapDataEditor : OdinEditor
             {
                 if (idx >= 0)
                 {
-                    Undo.RecordObject(map, "Remove Collision");
+                    MarkDirty(map, "Remove Collision");
                     map.collisions.RemoveAt(idx);
                 }
                 e.Use();
@@ -564,9 +648,12 @@ public class MapDataEditor : OdinEditor
         }
     }
 
-    // ============================================================
-    // HELPERS
-    // ============================================================
+    void MarkDirty(MapData map, string undoName)
+    {
+        Undo.RecordObject(map, undoName);
+        map.RebuildGeneratedMetaIfNeeded();
+        EditorUtility.SetDirty(map);
+    }
 
     float GetCellSize(Vector2 mapSize, Rect rect)
     {
@@ -627,6 +714,59 @@ public class MapDataEditor : OdinEditor
                 return i;
         }
         return -1;
+    }
+
+    void ApplyCandidateToMap(MapData map, MapGeneratedCandidate candidate, string undoName)
+    {
+        if (map == null || candidate == null)
+        {
+            Debug.LogWarning("Map generation failed. Candidate is null.");
+            return;
+        }
+
+        Undo.RecordObject(map, undoName);
+
+        map.size = candidate.size;
+
+        map.playerStartPoints = new Vector2[candidate.playerStartPoints.Length];
+        for (int i = 0; i < candidate.playerStartPoints.Length; i++)
+            map.playerStartPoints[i] = candidate.playerStartPoints[i];
+
+        map.collisions = new List<Vector2>();
+        for (int i = 0; i < candidate.collisions.Count; i++)
+            map.collisions.Add(candidate.collisions[i]);
+
+        map.waves = new List<WaveData>();
+        for (int i = 0; i < candidate.waves.Count; i++)
+        {
+            var srcWave = candidate.waves[i];
+            var newWave = new WaveData
+            {
+                holdType = srcWave.holdType,
+                value = srcWave.value,
+                spawns = new List<SpawnEntry>()
+            };
+
+            if (srcWave.spawns != null)
+            {
+                for (int j = 0; j < srcWave.spawns.Count; j++)
+                {
+                    newWave.spawns.Add(new SpawnEntry
+                    {
+                        data = srcWave.spawns[j].data,
+                        position = srcWave.spawns[j].position
+                    });
+                }
+            }
+
+            map.waves.Add(newWave);
+        }
+
+        map.generatedMeta = candidate.meta ?? MapFeatureExtractor.Extract(map);
+
+        selectedWaveIndex = 0;
+
+        EditorUtility.SetDirty(map);
     }
 }
 #endif

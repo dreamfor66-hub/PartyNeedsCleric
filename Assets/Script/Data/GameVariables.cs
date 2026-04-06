@@ -50,11 +50,11 @@ public class GameVariables : ScriptableObject
 
     [Title("Outgame UI")]
     [Header("Equipment Stat Compare Colors")]
-    public Color equipmentStatBaseColor = Color.white;                 // 장착중 팝업(Compare) 기본값
-    public Color equipmentStatHigherValueColor = new Color(0.2f, 1f, 0.2f); // 선택 장비 값이 더 높을 때(초록)
-    public Color equipmentStatLowerValueColor = new Color(1f, 0.2f, 0.2f);  // 선택 장비 값이 더 낮을 때(빨강)
-    public Color equipmentStatIncreaseDeltaColor = new Color(1f, 0.2f, 0.2f); // ▲(빨강)
-    public Color equipmentStatDecreaseDeltaColor = new Color(0.2f, 0.4f, 1f); // ▼(파랑)
+    public Color equipmentStatBaseColor = Color.white;
+    public Color equipmentStatHigherValueColor = new Color(0.2f, 1f, 0.2f);
+    public Color equipmentStatLowerValueColor = new Color(1f, 0.2f, 0.2f);
+    public Color equipmentStatIncreaseDeltaColor = new Color(1f, 0.2f, 0.2f);
+    public Color equipmentStatDecreaseDeltaColor = new Color(0.2f, 0.4f, 1f);
 
     [Header("Outgame - Stat Icons")]
     public StatIcons statIcons;
@@ -70,6 +70,11 @@ public class GameVariables : ScriptableObject
     public EquipmentOptionPool equipmentOptionPoolGreen;
     public Color equipmentOptionColorYellow;
     public EquipmentOptionPool equipmentOptionPoolYellow;
+
+    [Title("Map Generation")]
+    [Header("Learned Preference Memory")]
+    public MapPreferenceProfile mapPreferenceProfile;
+
     public Color GetEquipmentRarityColor(EquipmentRarity r)
     {
         switch (r)

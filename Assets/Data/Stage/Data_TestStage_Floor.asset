@@ -12,15 +12,86 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 083f822594c2ab64586b264ccffb0a0e, type: 3}
   m_Name: Data_TestStage_Floor
   m_EditorClassIdentifier: 
-  size: {x: 300, y: 500}
+  size: {x: 500, y: 500}
   playerStartPoints:
-  - {x: 32, y: -64}
-  - {x: -32, y: -96}
-  - {x: 32, y: -96}
+  - {x: -128, y: -192}
+  - {x: 0, y: -192}
+  - {x: 128, y: -192}
   collisions: []
   waves:
   - holdType: 0
-    value: 0
+    value: 1
+    spawns:
+    - data: {fileID: 11400000, guid: 8a7f1ab2e81032c43b7c9a101f8a86e1, type: 2}
+      position: {x: 224, y: 128}
+    - data: {fileID: 11400000, guid: 3ce3ccd4c6213574bacc299d4823d7f7, type: 2}
+      position: {x: -192, y: 32}
+    - data: {fileID: 11400000, guid: 8a7f1ab2e81032c43b7c9a101f8a86e1, type: 2}
+      position: {x: 32, y: -0}
+    - data: {fileID: 11400000, guid: eb461ed0515fef749b3b246d8a68a0bd, type: 2}
+      position: {x: 128, y: 224}
+    - data: {fileID: 11400000, guid: 3ce3ccd4c6213574bacc299d4823d7f7, type: 2}
+      position: {x: 160, y: 160}
+    - data: {fileID: 11400000, guid: 8a7f1ab2e81032c43b7c9a101f8a86e1, type: 2}
+      position: {x: 160, y: -32}
+  - holdType: 0
+    value: 3
     spawns:
     - data: {fileID: 11400000, guid: 4139faf932e96734f8b9523d93f80de6, type: 2}
-      position: {x: -0, y: 160}
+      position: {x: -0, y: 96}
+    - data: {fileID: 11400000, guid: eb461ed0515fef749b3b246d8a68a0bd, type: 2}
+      position: {x: 64, y: 160}
+    - data: {fileID: 11400000, guid: 8a7f1ab2e81032c43b7c9a101f8a86e1, type: 2}
+      position: {x: 192, y: 128}
+    - data: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
+      position: {x: -0, y: 32}
+    - data: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
+      position: {x: -96, y: 128}
+    - data: {fileID: 11400000, guid: 4139faf932e96734f8b9523d93f80de6, type: 2}
+      position: {x: 192, y: 96}
+  - holdType: 1
+    value: 3.9452367
+    spawns:
+    - data: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
+      position: {x: 160, y: 224}
+    - data: {fileID: 11400000, guid: 3ce3ccd4c6213574bacc299d4823d7f7, type: 2}
+      position: {x: 160, y: 96}
+    - data: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
+      position: {x: -64, y: 64}
+    - data: {fileID: 11400000, guid: 4139faf932e96734f8b9523d93f80de6, type: 2}
+      position: {x: -192, y: 128}
+    - data: {fileID: 11400000, guid: eb461ed0515fef749b3b246d8a68a0bd, type: 2}
+      position: {x: -192, y: 96}
+    - data: {fileID: 11400000, guid: 4139faf932e96734f8b9523d93f80de6, type: 2}
+      position: {x: -32, y: 64}
+    - data: {fileID: 11400000, guid: 8a7f1ab2e81032c43b7c9a101f8a86e1, type: 2}
+      position: {x: 96, y: 96}
+  generatedMeta:
+    generatorVersion: v1
+    features:
+    - key: layout.symmetry.lr
+      value: 0
+    - key: layout.symmetry.tb
+      value: 0
+    - key: layout.symmetry.none
+      value: 1
+    - key: obstacle.density
+      value: 0
+    - key: obstacle.centerBlock
+      value: 0
+    - key: lane.count
+      value: 1
+    - key: start.safety
+      value: 0.2784966
+    - key: wave.count
+      value: 3
+    - key: spawn.meleeRatio
+      value: 0.57894737
+    - key: spawn.rangedRatio
+      value: 0.42105263
+    - key: spawn.spacing.mean
+      value: 0.28092867
+    - key: spawn.spacing.min
+      value: 0.04525483
+    - key: spawn.cluster.score
+      value: 0.15686275
