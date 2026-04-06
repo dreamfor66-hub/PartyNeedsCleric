@@ -64,12 +64,6 @@ public class MapDataEditor : OdinEditor
 
         base.OnInspectorGUI();
 
-        if (EditorGUI.EndChangeCheck())
-        {
-            map.RebuildGeneratedMetaIfNeeded();
-            EditorUtility.SetDirty(map);
-        }
-
         GUILayout.Space(10);
         DrawEditModeToolbar();
 
@@ -78,6 +72,12 @@ public class MapDataEditor : OdinEditor
 
         GUILayout.Space(5);
         Rect simRect = DrawSimulationSpaceBackground(map);
+
+        if (EditorGUI.EndChangeCheck())
+        {
+            map.RebuildGeneratedMetaIfNeeded();
+            EditorUtility.SetDirty(map);
+        }
 
         GUILayout.Space(10);
         DrawGenerationToolbar(map);
