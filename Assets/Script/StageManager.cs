@@ -11,15 +11,15 @@ public class StageManager : MonoBehaviour
     MapData currentMap;
     GameObject mapRoot;
 
-    // ========== Visual Settings (Inspector ¼³Á¤) ==========
+    // ========== Visual Settings (Inspector ì„¤ì •) ==========
     [Header("Map Visual Settings")]
     public Color wallColor = new Color(0, 0, 0, 0.40f);
     public Color collisionColor = new Color(0.2f, 0f, 0f, 0.35f);
     public Color floorColor = new Color(0, 0, 0, 0.22f);
-    public Sprite baseSprite;   // ¹Ù´Ú, º®, Collision¿¡ ¾µ Sprite
+    public Sprite baseSprite;   // ë°”ë‹¥, ë²½, Collisionì— ì“¸ Sprite
 
 
-    // === FullRect Å¸ÀÏ¸µ Àü¿ë ½ºÇÁ¶óÀÌÆ® ===
+    // === FullRect íƒ€ì¼ë§ ì „ìš© ìŠ¤í”„ë¼ì´íŠ¸ ===
     private Sprite tileSprite;
 
     void Awake()
@@ -29,7 +29,7 @@ public class StageManager : MonoBehaviour
     }
 
     // ------------------------------------------------------------
-    // (1) FullRect White Sprite »ı¼º
+    // (1) FullRect White Sprite ìƒì„±
     // ------------------------------------------------------------
     void CreateTileSprite()
     {
@@ -43,7 +43,7 @@ public class StageManager : MonoBehaviour
             new Vector2(0.5f, 0.5f),
             100f,
             0,
-            SpriteMeshType.FullRect   // ¡Ú FullRect °­Á¦
+            SpriteMeshType.FullRect   // â˜… FullRect ê°•ì œ
         );
     }
 
@@ -88,8 +88,9 @@ public class StageManager : MonoBehaviour
         mapRoot = new GameObject("MapRoot");
 
         CreateMapVisual(map.size);
-        CreateMapBounds(map.size);
-        CreateCollisions(map);     // ³»ºÎ Àå¾Ö¹° »ı¼º
+        if (map.useOuterBoundaryWalls)
+            CreateMapBounds(map.size);
+        CreateCollisions(map);     // ë‚´ë¶€ ì¥ì• ë¬¼ ìƒì„±
 
         yield return null;
 
@@ -109,10 +110,10 @@ public class StageManager : MonoBehaviour
         var sr = go.AddComponent<SpriteRenderer>();
         sr.sprite = baseSprite;
         sr.color = floorColor;
-        sr.drawMode = SpriteDrawMode.Simple;   // ¡Ú Àı´ë Tiled/Sliced »ç¿ëÇÏÁö ¾ÊÀ½
+        sr.drawMode = SpriteDrawMode.Simple;   // â˜… ì ˆëŒ€ Tiled/Sliced ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
         sr.sortingOrder = 20000;
 
-        // ½ºÇÁ¶óÀÌÆ® ±âº» Å©±â(1 unit) ±âÁØÀ¸·Î ½ºÄÉÀÏ¸µ
+        // ìŠ¤í”„ë¼ì´íŠ¸ ê¸°ë³¸ í¬ê¸°(1 unit) ê¸°ì¤€ìœ¼ë¡œ ìŠ¤ì¼€ì¼ë§
         go.transform.localScale = new Vector3(size.x, size.y, 1f);
     }
 
@@ -124,18 +125,18 @@ public class StageManager : MonoBehaviour
     {
         float w = mapSize.x;
         float h = mapSize.y;
-        float t = 32;  // ÀÎ½ºÆåÅÍ¿¡¼­ ÁöÁ¤ÇÒ º® µÎ²²
+        float t = 32;  // ì¸ìŠ¤í™í„°ì—ì„œ ì§€ì •í•  ë²½ ë‘ê»˜
 
-        // ÁÂ ¿ì º®: ¼¼·Î h, µÎ²² t
+        // ì¢Œ ìš° ë²½: ì„¸ë¡œ h, ë‘ê»˜ t
         Vector2 wallSizeV = new Vector2(t, h + t * 2);
-        // »ó ÇÏ º®: °¡·Î w, µÎ²² t
+        // ìƒ í•˜ ë²½: ê°€ë¡œ w, ë‘ê»˜ t
         Vector2 wallSizeH = new Vector2(w + t * 2, t);
 
-        // ÁÂ/¿ì º® À§Ä¡
+        // ì¢Œ/ìš° ë²½ ìœ„ì¹˜
         float leftX = -(w * 0.5f) - (t * 0.5f);
         float rightX = +(w * 0.5f) + (t * 0.5f);
 
-        // »ó/ÇÏ º® À§Ä¡
+        // ìƒ/í•˜ ë²½ ìœ„ì¹˜
         float topY = +(h * 0.5f) + (t * 0.5f);
         float bottomY = -(h * 0.5f) - (t * 0.5f);
 
@@ -150,8 +151,8 @@ public class StageManager : MonoBehaviour
         var go = new GameObject(name);
         go.transform.SetParent(mapRoot.transform);
 
-        // size = ±æÀÌ, thickness = µÎ²²
-        // pos ´Â ÀÌ¹Ì thickness ¹İ¿µµÈ À§Ä¡
+        // size = ê¸¸ì´, thickness = ë‘ê»˜
+        // pos ëŠ” ì´ë¯¸ thickness ë°˜ì˜ëœ ìœ„ì¹˜
         go.transform.position = new Vector3(pos.x, pos.y, 0);
         go.transform.localScale = new Vector3(size.x, size.y, 1);
 
@@ -161,7 +162,7 @@ public class StageManager : MonoBehaviour
         sr.drawMode = SpriteDrawMode.Simple;
         sr.sortingOrder = -1999;
 
-        // Collider´Â Ç×»ó (1,1) À¯Áö ¡æ scale·Î Å©±â °áÁ¤µÊ
+        // ColliderëŠ” í•­ìƒ (1,1) ìœ ì§€ â†’ scaleë¡œ í¬ê¸° ê²°ì •ë¨
         var col = go.AddComponent<BoxCollider2D>();
         col.size = Vector2.one;
     }
@@ -182,7 +183,7 @@ public class StageManager : MonoBehaviour
             go.transform.SetParent(mapRoot.transform);
             go.transform.position = new Vector3(pos.x, pos.y, 0);
 
-            // ¡Ú 32x32´Â localScale·Î °áÁ¤
+            // â˜… 32x32ëŠ” localScaleë¡œ ê²°ì •
             go.transform.localScale = new Vector3(32f, 32f, 1);
 
             var sr = go.AddComponent<SpriteRenderer>();
@@ -191,9 +192,9 @@ public class StageManager : MonoBehaviour
             sr.drawMode = SpriteDrawMode.Simple;
             sr.sortingOrder = 20000;
 
-            // Collider2D´Â Ç×»ó 1x1 »óÅÂ¿¡¼­ localScale·Î ½ÇÁ¦ Å©±â°¡ ¸¸µé¾îÁü
+            // Collider2DëŠ” í•­ìƒ 1x1 ìƒíƒœì—ì„œ localScaleë¡œ ì‹¤ì œ í¬ê¸°ê°€ ë§Œë“¤ì–´ì§
             var col = go.AddComponent<BoxCollider2D>();
-            col.size = Vector2.one;   // ¡Ú ±âº»°ª À¯Áö
+            col.size = Vector2.one;   // â˜… ê¸°ë³¸ê°’ ìœ ì§€
         }
     }
 

@@ -19,16 +19,16 @@ public class GameVariables : ScriptableObject
     [Header("AI")]
     public float MoveAngleSpeed = 50f;
 
-    [Header("Search»óÅÂ")]
+    [Header("SearchÂ»Ã³Ã…Ã‚")]
     public float searchTime = 0.5f;
 
-    [Header("Knockback»óÅÂ")]
+    [Header("KnockbackÂ»Ã³Ã…Ã‚")]
     public float knockbackDuration = 0.3f;
 
-    [Header("Attack¸ð¼Ç")]
+    [Header("AttackÂ¸Ã°Â¼Ã‡")]
     public float attackAnimTime = 0.2f;
 
-    [Header("Ãæµ¹ °ü·Ã")]
+    [Header("ÃƒÃ¦ÂµÂ¹ Â°Ã¼Â·Ãƒ")]
     public float wallCollisionMinSpeed = 100f;
 
     [Title("UI")]
@@ -70,10 +70,6 @@ public class GameVariables : ScriptableObject
     public EquipmentOptionPool equipmentOptionPoolGreen;
     public Color equipmentOptionColorYellow;
     public EquipmentOptionPool equipmentOptionPoolYellow;
-
-    [Title("Map Generation")]
-    [Header("Learned Preference Memory")]
-    public MapPreferenceProfile mapPreferenceProfile;
 
     public Color GetEquipmentRarityColor(EquipmentRarity r)
     {
