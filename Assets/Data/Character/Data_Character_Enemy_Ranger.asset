@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 813fa3d6c1b9c1448a50f2ef5ee7c952, type: 3}
+  m_Name: Data_Character_Enemy_Ranger
+  m_EditorClassIdentifier: 
+  characterName: 
+  characterDesc: 
+  icon: {fileID: 21300000, guid: f27721d5d6d79914eafdf0bd3baf0a65, type: 3}
+  sprites:
+    anim_idleFront: {fileID: 21300000, guid: f27721d5d6d79914eafdf0bd3baf0a65, type: 3}
+    anim_idleBack: {fileID: 21300000, guid: 1cefa339ac08a7142af8921b3d23fe4c, type: 3}
+    anim_attackFront: {fileID: 21300000, guid: 59f35832e61c43f49921d612c0a63f53, type: 3}
+    anim_attackBack: {fileID: 21300000, guid: 04193da835b5fe240bec13a6e0d02bdc, type: 3}
+    anim_die: {fileID: 21300000, guid: e20812f41b4da1a4ea7dd2028755a464, type: 3}
+  portrait: {fileID: 0}
+  portrait2: {fileID: 0}
+  isBoss: 0
+  characterType: 1
+  rangeRadius: 150
+  fsmData: {fileID: 0}
+  destroyOnDie: 0
+  targettable: 1
+  characterTags: 2
+  radius: 10
+  mass: 5
+  baseAtk: 100
+  baseHp: 700
+  moveSpeed: 60
+  baseMana: 100
+  baseManaRegen: 0
+  baseResilience: 100
+  baseCooldownHaste: 100
+  baseCastingHaste: 100
+  baseHitData:
+    hitId: 1
+    hitFilter: 0
+    hitFxType: 10
+    attackMultiplier: 1
+    knockbackPower: 500
+    knockbackDirectionWeight: 0
+    hitApplyBuffs: []
+    hitStop: 0.1
+    ignoreKnockbackDirection: 0
+  baseBulletData: {fileID: 11400000, guid: 9e58997fcbdd8754c9a6009f5916d99d, type: 2}
+  bulletCooldown: 3
+  StartBuffs: []
+  BasicSkills: []
+  StartSkills: []

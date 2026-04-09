@@ -76,6 +76,30 @@ MonoBehaviour:
     direction: 0
     angleOffsetRange: {x: 0, y: 0}
     teamSelector: 0
+  - trigger: 100
+    triggerCount: 1
+    requiredHitFilter: 0
+    condition: 0
+    conditionValue: 0
+    conditionBuffTag: 0
+    conditionNegative: 0
+    target: 0
+    useRange: 0
+    targetRange: 0
+    effect: 402
+    effectBuffTag: 0
+    effectValue: 0
+    effectCount: 1
+    formulas: []
+    characterData: {fileID: 0}
+    bulletData: {fileID: 0}
+    buffToAdd: {fileID: 0}
+    offset: {x: 0, y: 0}
+    range: 0
+    removeBuffId: 
+    direction: 0
+    angleOffsetRange: {x: 0, y: 0}
+    teamSelector: 0
   removeCondition: 0
   duration: 10
   triggerCount: 1

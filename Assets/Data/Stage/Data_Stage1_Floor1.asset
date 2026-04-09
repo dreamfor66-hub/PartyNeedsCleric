@@ -18,17 +18,16 @@ MonoBehaviour:
   - {x: 32, y: -192}
   - {x: 0, y: -224}
   collisions: []
+  useOuterBoundaryWalls: 0
   waves:
   - holdType: 0
     value: 0
     spawns:
-    - data: {fileID: 11400000, guid: 4139faf932e96734f8b9523d93f80de6, type: 2}
-      position: {x: -96, y: 128}
-    - data: {fileID: 11400000, guid: 4139faf932e96734f8b9523d93f80de6, type: 2}
-      position: {x: 96, y: 128}
     - data: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
       position: {x: -64, y: 192}
     - data: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
       position: {x: 64, y: 192}
-    - data: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
-      position: {x: -0, y: 160}
+    - data: {fileID: 11400000, guid: f0238df3c4368824e954cdd26854ffe0, type: 2}
+      position: {x: -160, y: 192}
+    - data: {fileID: 11400000, guid: f0238df3c4368824e954cdd26854ffe0, type: 2}
+      position: {x: 160, y: 192}

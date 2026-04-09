@@ -2846,7 +2846,9 @@ MonoBehaviour:
   characterPrefab: {fileID: 3613747052386729775, guid: 56a91915936f5f44080659ec531471f8, type: 3}
   commanderPrefab: {fileID: -1375051171643351660, guid: 96ac43ee679126e489148731c3e5509a, type: 3}
   commanderData: {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}
-  playerTeam: []
+  playerTeam:
+  - {fileID: 11400000, guid: 71e07effc3fa0b74a808bfe223611eeb, type: 2}
+  - {fileID: 11400000, guid: 6ac17904fc585d944aeca9a40e2d6694, type: 2}
   enemyWave: []
   useOutgameEquippedParty: 1
 --- !u!224 &2112638431 stripped
