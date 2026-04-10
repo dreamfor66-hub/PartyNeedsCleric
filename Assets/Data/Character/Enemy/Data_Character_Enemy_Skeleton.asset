@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterName: 
   characterDesc: 
-  portrait: {fileID: 0}
   icon: {fileID: 21300000, guid: 2f28f4a9d28a8e8429b6e1409425573d, type: 3}
   sprites:
     anim_idleFront: {fileID: 21300000, guid: 2f28f4a9d28a8e8429b6e1409425573d, type: 3}
@@ -22,26 +21,37 @@ MonoBehaviour:
     anim_attackFront: {fileID: 21300000, guid: 15cf6d433b93cf64090e4ec796770d9f, type: 3}
     anim_attackBack: {fileID: 21300000, guid: 18f40a03a8d432a4e88a20a33012d39a, type: 3}
     anim_die: {fileID: 21300000, guid: fb0e4cf158b8edd42b4038aeb2e29dbc, type: 3}
+  portrait: {fileID: 0}
+  portrait2: {fileID: 0}
   isBoss: 0
   characterType: 0
   rangeRadius: 150
   fsmData: {fileID: 0}
   destroyOnDie: 0
   targettable: 1
+  characterTags: 0
   radius: 10
   mass: 5
-  baseAtk: 250
+  baseAtk: 100
   baseHp: 1000
   moveSpeed: 50
   baseMana: 100
   baseManaRegen: 0
+  baseResilience: 100
+  baseCooldownHaste: 100
+  baseCastingHaste: 100
   baseHitData:
+    hitId: 1
     hitFilter: 0
+    hitFxType: 10
     attackMultiplier: 1
     knockbackPower: 500
+    knockbackDirectionWeight: 0
+    hitApplyBuffs: []
     hitStop: 0.1
     ignoreKnockbackDirection: 0
   baseBulletData: {fileID: 0}
   bulletCooldown: 1
   StartBuffs: []
+  BasicSkills: []
   StartSkills: []

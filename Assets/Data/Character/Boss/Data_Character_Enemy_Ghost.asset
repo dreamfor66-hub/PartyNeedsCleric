@@ -32,7 +32,7 @@ MonoBehaviour:
   characterTags: 0
   radius: 10
   mass: 3
-  baseAtk: 200
+  baseAtk: 125
   baseHp: 500
   moveSpeed: 60
   baseMana: 100
@@ -46,6 +46,8 @@ MonoBehaviour:
     hitFxType: 10
     attackMultiplier: 1
     knockbackPower: 500
+    knockbackDirectionWeight: 0
+    hitApplyBuffs: []
     hitStop: 0.1
     ignoreKnockbackDirection: 0
   baseBulletData: {fileID: 0}
