@@ -18,8 +18,8 @@ MonoBehaviour:
   skillScript: "\uBC1B\uC544\uB77C!!"
   useType: 0
   skillTags: 0
-  manaCost: 0
-  cooldown: 0
+  manaCost: 20
+  cooldown: 10
   initialCooldown: 0
   conditions: []
   useCasting: 1

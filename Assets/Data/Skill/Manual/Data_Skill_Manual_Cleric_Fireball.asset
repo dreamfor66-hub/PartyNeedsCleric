@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
-  m_Name: Data_Skill_Active_Neutral_Fireball
+  m_Name: Data_Skill_Manual_Cleric_Fireball
   m_EditorClassIdentifier: 
   skillId: Skill_Active_Neutral_Fireball
   skillName: "\uD30C\uC774\uC5B4\uBCFC"
@@ -18,8 +18,8 @@ MonoBehaviour:
   skillScript: "\uBC1B\uC544\uB77C!!"
   useType: 0
   skillTags: 0
-  manaCost: 0
-  cooldown: 0
+  manaCost: 10
+  cooldown: 3.5
   initialCooldown: 0
   conditions: []
   useCasting: 1
