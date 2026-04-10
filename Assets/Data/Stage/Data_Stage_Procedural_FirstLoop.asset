@@ -1,0 +1,178 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01c1943507e25b3478ff078cd71040fd, type: 3}
+  m_Name: Data_Stage_Procedural_FirstLoop
+  m_EditorClassIdentifier: 
+  floors: []
+  useProceduralStageFlow: 1
+  runConfig:
+    totalFloors: 10
+    bossFloorInterval: 5
+    startBudget: 5
+    budgetIncreasePerFloor: 2
+    routeChoiceCount: 2
+    recentRouteHistorySize: 3
+    repeatedRoutePenalty: 0.35
+    minSpawnDistanceFromPlayers: 150
+    minSpawnDistanceBetweenEnemies: 56
+    obstacleAvoidancePadding: 20
+    waveRanges:
+    - roomType: 0
+      range: {x: 1, y: 2}
+    - roomType: 1
+      range: {x: 1, y: 2}
+    - roomType: 2
+      range: {x: 1, y: 1}
+  roomTemplates:
+  - templateId: FirstLoop_SmallCircle
+    templateType: 0
+    mapSize: {x: 420, y: 420}
+    playerStartPoints:
+    - {x: -48, y: -150}
+    - {x: 48, y: -150}
+    - {x: 0, y: -190}
+    spawnAreas:
+    - area:
+        serializedVersion: 2
+        x: -130
+        y: 10
+        width: 260
+        height: 150
+    fixedObstacles: []
+    canUseForBoss: 0
+  - templateId: FirstLoop_Horizontal
+    templateType: 1
+    mapSize: {x: 560, y: 340}
+    playerStartPoints:
+    - {x: -60, y: -110}
+    - {x: 60, y: -110}
+    - {x: 0, y: -150}
+    spawnAreas:
+    - area:
+        serializedVersion: 2
+        x: -210
+        y: 0
+        width: 420
+        height: 120
+    fixedObstacles: []
+    canUseForBoss: 0
+  - templateId: FirstLoop_BossArena
+    templateType: 5
+    mapSize: {x: 640, y: 420}
+    playerStartPoints:
+    - {x: -60, y: -140}
+    - {x: 60, y: -140}
+    - {x: 0, y: -180}
+    spawnAreas:
+    - area:
+        serializedVersion: 2
+        x: -220
+        y: 20
+        width: 440
+        height: 150
+    fixedObstacles: []
+    canUseForBoss: 1
+  roomTypeWeights:
+  - floorMin: 1
+    floorMax: 2
+    weights:
+    - roomType: 0
+      weight: 1
+    - roomType: 1
+      weight: 0
+    - roomType: 3
+      weight: 0
+    - roomType: 4
+      weight: 0
+    - roomType: 5
+      weight: 0
+    - roomType: 6
+      weight: 0
+  - floorMin: 3
+    floorMax: 4
+    weights:
+    - roomType: 0
+      weight: 0.85
+    - roomType: 1
+      weight: 0.15
+    - roomType: 3
+      weight: 0
+    - roomType: 4
+      weight: 0
+    - roomType: 5
+      weight: 0
+    - roomType: 6
+      weight: 0
+  - floorMin: 6
+    floorMax: 9
+    weights:
+    - roomType: 0
+      weight: 0.7
+    - roomType: 1
+      weight: 0.3
+    - roomType: 3
+      weight: 0
+    - roomType: 4
+      weight: 0
+    - roomType: 5
+      weight: 0
+    - roomType: 6
+      weight: 0
+  enemySpawnProfiles:
+  - id: ghost_fast
+    characterData: {fileID: 11400000, guid: 4139faf932e96734f8b9523d93f80de6, type: 2}
+    cost: 1
+    availableFromFloor: 1
+    maxCountPerEncounter: 5
+    maxCountPerWave: 3
+    tags: 1
+    incompatibleWith: []
+  - id: skeleton_basic
+    characterData: {fileID: 11400000, guid: 1ab696fd414855443a5414198003f494, type: 2}
+    cost: 2
+    availableFromFloor: 1
+    maxCountPerEncounter: 4
+    maxCountPerWave: 3
+    tags: 5
+    incompatibleWith: []
+  - id: ranger_backline
+    characterData: {fileID: 11400000, guid: f0238df3c4368824e954cdd26854ffe0, type: 2}
+    cost: 3
+    availableFromFloor: 2
+    maxCountPerEncounter: 2
+    maxCountPerWave: 1
+    tags: 3
+    incompatibleWith: []
+  - id: ghost_king_boss
+    characterData: {fileID: 11400000, guid: 3ce3ccd4c6213574bacc299d4823d7f7, type: 2}
+    cost: 999
+    availableFromFloor: 5
+    maxCountPerEncounter: 1
+    maxCountPerWave: 1
+    tags: 32
+    incompatibleWith: []
+  rewardProfiles:
+  - roomType: 0
+    candidateCount: 1
+    commonWeight: 1
+    rareWeight: 0.05
+    guaranteedReward: 0
+  - roomType: 1
+    candidateCount: 2
+    commonWeight: 0.85
+    rareWeight: 0.3
+    guaranteedReward: 1
+  - roomType: 2
+    candidateCount: 3
+    commonWeight: 0.5
+    rareWeight: 1
+    guaranteedReward: 1

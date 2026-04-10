@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
+  m_Name: Data_Skill_Manual_Cleric_QuickCast
+  m_EditorClassIdentifier: 
+  skillId: Skill_Manual_Neutral_QuickCast
+  skillName: "\uD035 \uCE90\uC2A4\uD2B8"
+  icon: {fileID: 21300000, guid: 2f5a6a8415e551d4c906ed80812eb888, type: 3}
+  skillScript: 
+  useType: 0
+  skillTags: 2
+  manaCost: 10
+  cooldown: 1
+  initialCooldown: 0
+  conditions: []
+  useCasting: 0
+  castingTime: 1
+  description: "\uB2E4\uC74C \uC0AC\uC6A9\uD558\uB294 1\uBC88\uC758 \uC2A4\uD0AC\uC5D0
+    \uCE90\uC2A4\uD305 \uC18D\uB3C4\uB97C 2\uBC30\uB85C \uD569\uB2C8\uB2E4.\n(\uCE90\uC2A4\uD305\uC744
+    \uD558\uC9C0 \uC54A\uB294 \uC2A4\uD0AC\uC5D0\uB3C4 \uC18C\uC9C4\uB429\uB2C8\uB2E4)"
+  targetType: 2
+  radius: 50
+  teamType: 1
+  effects:
+  - type: 0
+    buff: {fileID: 11400000, guid: 9ab0ff15d986ba04185fa4e133eea57e, type: 2}
+    bullet: {fileID: 0}
+    useUiStartPosition: 0
+    buffCount: 1
+    removeTag: 0
+    character: {fileID: 0}
+    action: {fileID: 0}
+    effectValue: 0
+    formulas: []
+  usableClasses:
+  - {fileID: 11400000, guid: c51f638f93143d842adefb5273db1bb3, type: 2}
+  - {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}
+  - {fileID: 11400000, guid: 234948f64cd72764ba40f5504271f453, type: 2}

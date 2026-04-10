@@ -7,9 +7,6 @@ public class SkillCaster : MonoBehaviour
     public static SkillCaster Instance;
     void Awake() => Instance = this;
 
-    // ============================================================
-    // ① SingleCharacter 대상 스킬
-    // ============================================================
     public void CastSkill(CharacterBehaviour owner, SkillData data, CharacterBehaviour target)
     {
         foreach (var e in data.effects)
@@ -17,7 +14,6 @@ public class SkillCaster : MonoBehaviour
             switch (e.type)
             {
                 case SkillEffectType.AddBuff:
-                    // ★ buffCount 만큼 AddBuff
                     for (int i = 0; i < e.buffCount; i++)
                         target.Buffs.AddBuff(e.buff);
                     break;
@@ -53,31 +49,30 @@ public class SkillCaster : MonoBehaviour
                 case SkillEffectType.Heal:
                     {
                         float baseHeal = GetFinalEffectValue(e, owner, target);
-                        float healerMul = owner != null ? owner.GetResilience() / 100f : 1f; // Resilience=회복력(시전자)
+                        float healerMul = owner != null ? owner.GetResilience() / 100f : 1f;
                         int heal = Mathf.RoundToInt(baseHeal * healerMul);
                         target.Heal(heal);
                     }
                     break;
+
                 case SkillEffectType.RestoreMana:
                     {
                         int mana = Mathf.RoundToInt(GetFinalEffectValue(e, owner, target));
                         target.RestoreMana(mana);
                     }
                     break;
+
                 case SkillEffectType.DoAction:
                     target.StartAction(e.action);
                     break;
             }
         }
-        SkillBubbleSpawner.Instance.Show(target != null ? target : owner, data.skillScript, 1f);
+
+        ShowSkillBubble(owner, data);
     }
 
-    // ============================================================
-    // ② Range 대상 스킬
-    // ============================================================
     public void CastSkill(CharacterBehaviour owner, SkillData data, Vector3 point)
     {
-        // JustPoint 처리: SpawnBullet만 사용됨
         if (data.teamType == SkillTeamType.JustPoint)
         {
             foreach (var e in data.effects)
@@ -88,8 +83,8 @@ public class SkillCaster : MonoBehaviour
                     case SkillEffectType.RemoveBuffByTag:
                     case SkillEffectType.Heal:
                     case SkillEffectType.DoAction:
-                        // JustPoint에는 대상이 없으므로 무시
                         break;
+
                     case SkillEffectType.SpawnBullet:
                         {
                             Vector3 targetPoint = point;
@@ -112,31 +107,22 @@ public class SkillCaster : MonoBehaviour
                         break;
                 }
             }
+
+            ShowSkillBubble(owner, data);
             return;
         }
 
-        // ========================================================
-        // 범위 내 Character 검사
-        // ========================================================
         foreach (var c in EntityContainer.Instance.Characters)
         {
             if (c.state == CharacterState.Die) continue;
+            if (Vector2.Distance(c.transform.position, point) > data.radius) continue;
+            if (!ValidateCharacter(data.teamType, owner, c)) continue;
 
-            // 거리 검사
-            if (Vector2.Distance(c.transform.position, point) > data.radius)
-                continue;
-
-            // 팀 검사
-            if (!ValidateCharacter(data.teamType, owner, c))
-                continue;
-
-            // === 효과 실행 ===
             foreach (var e in data.effects)
             {
                 switch (e.type)
                 {
                     case SkillEffectType.AddBuff:
-                        // ★ buffCount 만큼 AddBuff
                         for (int i = 0; i < e.buffCount; i++)
                             c.Buffs.AddBuff(e.buff);
                         break;
@@ -146,8 +132,6 @@ public class SkillCaster : MonoBehaviour
                         var b = Instantiate(prefab, c.transform.position, Quaternion.identity);
 
                         Vector3 dir = c.transform.right;
-
-                        // === 수정된 Init ===
                         b.Init(e.bullet, owner, dir, owner.team);
 
                         owner.Buffs.NotifyOwnerSpawnBullet(b);
@@ -167,6 +151,7 @@ public class SkillCaster : MonoBehaviour
                         );
                         spawnedR.Init(e.character, owner.team);
                         break;
+
                     case SkillEffectType.Heal:
                         {
                             float baseHeal = GetFinalEffectValue(e, owner, c);
@@ -175,24 +160,38 @@ public class SkillCaster : MonoBehaviour
                             c.Heal(heal);
                         }
                         break;
+
                     case SkillEffectType.RestoreMana:
                         {
                             int mana = Mathf.RoundToInt(GetFinalEffectValue(e, owner, c));
                             c.RestoreMana(mana);
                         }
                         break;
+
                     case SkillEffectType.DoAction:
                         c.StartAction(e.action);
                         break;
                 }
             }
-            SkillBubbleSpawner.Instance.Show(c, data.skillScript, 1f);
         }
+
+        ShowSkillBubble(owner, data);
     }
 
-    // ============================================================
-    // ③ 팀 필터 함수
-    // ============================================================
+    void ShowSkillBubble(CharacterBehaviour owner, SkillData data)
+    {
+        if (owner == null || data == null)
+            return;
+
+        if (owner is PlayerCommander)
+            return;
+
+        if (string.IsNullOrWhiteSpace(data.skillScript))
+            return;
+
+        SkillBubbleSpawner.Instance.Show(owner, data.skillScript, 1f);
+    }
+
     bool ValidateCharacter(SkillTeamType teamType, CharacterBehaviour owner, CharacterBehaviour target)
     {
         switch (teamType)
@@ -212,9 +211,6 @@ public class SkillCaster : MonoBehaviour
         return false;
     }
 
-    // ============================================================
-    // ④ 계산식 함수
-    // ============================================================
     private float GetFinalEffectValue(SkillEffectEntry e, CharacterBehaviour owner, CharacterBehaviour target)
     {
         float finalValue = e.effectValue;
@@ -246,7 +242,7 @@ public class SkillCaster : MonoBehaviour
         return finalValue;
     }
 
-        Vector3 ResolveSkillBulletStartPosition(CharacterBehaviour owner, SkillData skill, SkillEffectEntry effect, Vector3 defaultSpawnPos)
+    Vector3 ResolveSkillBulletStartPosition(CharacterBehaviour owner, SkillData skill, SkillEffectEntry effect, Vector3 defaultSpawnPos)
     {
         if (!effect.useUiStartPosition)
             return defaultSpawnPos;

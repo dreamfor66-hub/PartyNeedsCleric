@@ -10,35 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
-  m_Name: Data_Skill_Manual_Cleric_Contender
+  m_Name: Data_Skill_Manual_Cleric_BindingCircle
   m_EditorClassIdentifier: 
-  skillId: Skill_Manual_Cleric_Contender
-  skillName: "\uCEE8\uD150\uB354 (\uBBF8\uAD6C\uD604)"
-  icon: {fileID: 21300000, guid: 239d6bf243f66914aaef83720f8a73fb, type: 3}
+  skillId: Skill_Manual_Neutral_BindingCircle
+  skillName: "\uBC14\uC778\uB529 \uC11C\uD074"
+  icon: {fileID: 21300000, guid: c53e78cff8b3fc14399b88ae735d4f80, type: 3}
   skillScript: 
   useType: 0
-  skillTags: 0
+  skillTags: 16
   manaCost: 10
-  cooldown: 3.5
+  cooldown: 1
   initialCooldown: 0
   conditions: []
-  useCasting: 1
+  useCasting: 0
   castingTime: 1
-  description: "[\uCC44\uB110\uB9C1 5\uCD08]\n1\uCD08 \uB9C8\uB2E4, \uC544\uAD70
-    \uC804\uCCB4\uC758 \uCCB4\uB825\uC744 100 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4"
+  description: "\uBC94\uC704 \uB0B4 \uC801\uAD70 \uC804\uCCB4\uC758 \uC774\uB3D9\uC18D\uB3C4\uB97C
+    3\uCD08\uAC04 0\uC73C\uB85C \uB9CC\uB4ED\uB2C8\uB2E4."
   targetType: 1
   radius: 50
-  teamType: 1
+  teamType: 2
   effects:
   - type: 0
-    buff: {fileID: 11400000, guid: 00d4e2fd6fc27eb43a2b7a48f0bcbcd8, type: 2}
+    buff: {fileID: 11400000, guid: 5b00623b435ef26449ae8cd40b782614, type: 2}
     bullet: {fileID: 0}
     useUiStartPosition: 0
     buffCount: 1
     removeTag: 0
     character: {fileID: 0}
     action: {fileID: 0}
-    effectValue: 400
+    effectValue: 0
     formulas: []
   usableClasses:
+  - {fileID: 11400000, guid: c51f638f93143d842adefb5273db1bb3, type: 2}
   - {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}
+  - {fileID: 11400000, guid: 234948f64cd72764ba40f5504271f453, type: 2}

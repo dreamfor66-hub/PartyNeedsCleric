@@ -10,35 +10,37 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
-  m_Name: Data_Skill_Manual_Cleric_Contender
+  m_Name: Data_Skill_Manual_Cleric_Despell
   m_EditorClassIdentifier: 
-  skillId: Skill_Manual_Cleric_Contender
-  skillName: "\uCEE8\uD150\uB354 (\uBBF8\uAD6C\uD604)"
-  icon: {fileID: 21300000, guid: 239d6bf243f66914aaef83720f8a73fb, type: 3}
+  skillId: Skill_Manual_Neutral_Despell
+  skillName: "\uB514\uC2A4\uD3A0"
+  icon: {fileID: 21300000, guid: 4f290d7ae53fb4e4496129509563ef53, type: 3}
   skillScript: 
   useType: 0
-  skillTags: 0
+  skillTags: 80
   manaCost: 10
-  cooldown: 3.5
+  cooldown: 10
   initialCooldown: 0
   conditions: []
   useCasting: 1
   castingTime: 1
-  description: "[\uCC44\uB110\uB9C1 5\uCD08]\n1\uCD08 \uB9C8\uB2E4, \uC544\uAD70
-    \uC804\uCCB4\uC758 \uCCB4\uB825\uC744 100 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4"
-  targetType: 1
+  description: "\uC801\uAD70 1\uCCB4\uC5D0\uAC8C \uAC78\uB9B0 \uC774\uB85C\uC6B4
+    \uD6A8\uACFC\uB97C 5\uAC1C \uC81C\uAC70\uD569\uB2C8\uB2E4."
+  targetType: 0
   radius: 50
-  teamType: 1
+  teamType: 2
   effects:
-  - type: 0
-    buff: {fileID: 11400000, guid: 00d4e2fd6fc27eb43a2b7a48f0bcbcd8, type: 2}
+  - type: 2
+    buff: {fileID: 11400000, guid: f34e521deae15564baa810136fba89de, type: 2}
     bullet: {fileID: 0}
     useUiStartPosition: 0
-    buffCount: 1
-    removeTag: 0
+    buffCount: 5
+    removeTag: 1
     character: {fileID: 0}
     action: {fileID: 0}
-    effectValue: 400
+    effectValue: 0
     formulas: []
   usableClasses:
+  - {fileID: 11400000, guid: c51f638f93143d842adefb5273db1bb3, type: 2}
   - {fileID: 11400000, guid: a0ab2c426c992424098b58f439bd8f2b, type: 2}
+  - {fileID: 11400000, guid: 234948f64cd72764ba40f5504271f453, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
   m_Name: Data_Skill_Manual_Cleric_HighHeal
   m_EditorClassIdentifier: 
+  skillId: Skill_Manual_Cleric_HighHeal
   skillName: "\uD558\uC774 \uD790"
   icon: {fileID: 21300000, guid: 47c34be2d7e49b440ac75b76939251d2, type: 3}
   skillScript: 
@@ -20,6 +21,7 @@ MonoBehaviour:
   manaCost: 10
   cooldown: 3.5
   initialCooldown: 0
+  conditions: []
   useCasting: 1
   castingTime: 1
   description: "\uC544\uAD70 1\uCCB4\uC758 \uCCB4\uB825\uC744 400 \uD68C\uBCF5\uC2DC\uD0B5\uB2C8\uB2E4."
@@ -30,6 +32,7 @@ MonoBehaviour:
   - type: 4
     buff: {fileID: 11400000, guid: 903cd227de5314f4794b70e9aa7fe776, type: 2}
     bullet: {fileID: 0}
+    useUiStartPosition: 0
     buffCount: 1
     removeTag: 0
     character: {fileID: 0}

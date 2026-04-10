@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 public class StageManager : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class StageManager : MonoBehaviour
     int currentFloor = 0;
     MapData currentMap;
     GameObject mapRoot;
+    StageFlowManager stageFlowManager;
+    RoomGenerator roomGenerator;
+    RewardManager rewardManager;
+    GeneratedRoom currentRoom;
+    List<StageRouteChoice> currentRouteChoices = new();
 
     // ========== Visual Settings (Inspector 설정) ==========
     [Header("Map Visual Settings")]
@@ -26,6 +32,15 @@ public class StageManager : MonoBehaviour
     {
         Instance = this;
         CreateTileSprite();
+
+        if (stageData != null)
+        {
+            stageData.EnsureProceduralDefaults();
+            var encounterGenerator = new EncounterGenerator(stageData);
+            stageFlowManager = new StageFlowManager(stageData);
+            roomGenerator = new RoomGenerator(stageData, encounterGenerator);
+            rewardManager = new RewardManager(stageData);
+        }
     }
 
     // ------------------------------------------------------------
@@ -58,18 +73,48 @@ public class StageManager : MonoBehaviour
 
     IEnumerator RunStage()
     {
-        for (currentFloor = 0; currentFloor < stageData.floors.Count; currentFloor++)
+        if (stageData == null || stageFlowManager == null || roomGenerator == null || rewardManager == null)
         {
-            var floor = stageData.floors[currentFloor];
-            currentMap = floor.maps[Random.Range(0, floor.maps.Count)];
+            Debug.LogError("StageManager requires StageData with procedural configuration.");
+            yield break;
+        }
+
+        StageRoomType? selectedRoute = null;
+        int totalFloorCount = stageFlowManager.GetTotalFloorCount();
+
+        for (currentFloor = 1; currentFloor <= totalFloorCount; currentFloor++)
+        {
+            StageRoomType roomType = stageFlowManager.ResolveRoomType(currentFloor, selectedRoute);
+            currentRoom = roomGenerator.GenerateRoom(currentFloor, roomType);
+            currentMap = currentRoom.runtimeMap;
+
+            Debug.Log($"[Stage] Enter {currentFloor}F {roomType} template={currentRoom.template.templateType} waves={currentRoom.waveCount} budget={currentRoom.budget}");
 
             yield return StartCoroutine(LoadMap(currentMap));
-            yield return StartCoroutine(RunMap(currentMap));
+
+            if (RoomGenerator.IsCombatRoom(roomType))
+                yield return StartCoroutine(RunMap(currentMap));
+            else
+                yield return null;
 
             if (IsAllPlayersDead())
             {
                 ShowFail();
                 yield break;
+            }
+
+            rewardManager.GrantReward(currentRoom);
+
+            currentRouteChoices = stageFlowManager.BuildNextRouteChoices(currentFloor + 1);
+            if (currentRouteChoices.Count > 0)
+            {
+                stageFlowManager.RecordRouteExposure(currentRouteChoices);
+                Debug.Log($"[Stage] Next routes => {string.Join(", ", currentRouteChoices.Select(x => x.ToString()))}");
+                selectedRoute = currentRouteChoices[0].roomType;
+            }
+            else
+            {
+                selectedRoute = null;
             }
         }
 
@@ -205,6 +250,9 @@ public class StageManager : MonoBehaviour
 
     void SpawnWave(WaveData wave)
     {
+        if (wave == null || wave.spawns == null || CharacterSpawner.Instance == null)
+            return;
+
         foreach (var s in wave.spawns)
         {
             var c = Instantiate(CharacterSpawner.Instance.characterPrefab);
@@ -215,6 +263,9 @@ public class StageManager : MonoBehaviour
 
     IEnumerator RunMap(MapData map)
     {
+        if (map == null || map.waves == null)
+            yield break;
+
         foreach (var wave in map.waves)
         {
             SpawnWave(wave);
@@ -273,6 +324,9 @@ public class StageManager : MonoBehaviour
 
     void MovePlayersToStartPoints(Vector2[] pts)
     {
+        if (pts == null || pts.Length == 0 || EntityContainer.Instance == null)
+            return;
+
         var players = EntityContainer.Instance.Characters;
         int idx = 0;
 
@@ -288,6 +342,9 @@ public class StageManager : MonoBehaviour
 
     bool IsAllPlayersDead()
     {
+        if (EntityContainer.Instance == null)
+            return false;
+
         foreach (var c in EntityContainer.Instance.Characters)
         {
             if (c.team == TeamType.Player && c.state != CharacterState.Die)

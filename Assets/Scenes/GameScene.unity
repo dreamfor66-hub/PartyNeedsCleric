@@ -1160,7 +1160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26c863de26d7b3348899e7fd72a19c7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stageData: {fileID: 11400000, guid: 46d256c3a92d78c448ec21b8804c16f4, type: 2}
+  stageData: {fileID: 11400000, guid: 7f7d35f7f0cb40a8b8a63d7a5db18c11, type: 2}
   wallColor: {r: 0, g: 0, b: 0, a: 1}
   collisionColor: {r: 0.2, g: 0, b: 0, a: 1}
   floorColor: {r: 0, g: 0, b: 0, a: 0}

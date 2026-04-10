@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b3f73ed0c5cffa4a9d6a6490fd2768a, type: 3}
   m_Name: Data_Skill_Manual_Cleric_Resurrection
   m_EditorClassIdentifier: 
+  skillId: Skill_Manual_Cleric_Resurrection
   skillName: "\uB9AC\uC800\uB809\uC158(\uBBF8\uAD6C\uD604)"
   icon: {fileID: 21300000, guid: 1df59705554dc3043a5fa2145568e7fc, type: 3}
   skillScript: 
@@ -20,6 +21,7 @@ MonoBehaviour:
   manaCost: 20
   cooldown: 10
   initialCooldown: 0
+  conditions: []
   useCasting: 1
   castingTime: 1
   description: "\uC0AC\uB9DD\uD55C \uC544\uAD70 1\uCCB4\uB97C 50%\uC758 \uCCB4\uB825\uC73C\uB85C
