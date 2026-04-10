@@ -15,10 +15,14 @@ MonoBehaviour:
   floors: []
   useProceduralStageFlow: 1
   runConfig:
-    totalFloors: 10
-    bossFloorInterval: 5
-    startBudget: 5
-    budgetIncreasePerFloor: 2
+    totalFloors: 17
+    bossFloorInterval: 17
+    mapWidth: 5
+    startNodeCount: 3
+    pathCount: 3
+    maxNodesPerFloor: 3
+    startBudget: 1
+    budgetIncreasePerFloor: 1
     routeChoiceCount: 2
     recentRouteHistorySize: 3
     repeatedRoutePenalty: 0.35
@@ -83,48 +87,18 @@ MonoBehaviour:
     canUseForBoss: 1
   roomTypeWeights:
   - floorMin: 1
-    floorMax: 2
+    floorMax: 17
     weights:
     - roomType: 0
-      weight: 1
+      weight: 0.72
     - roomType: 1
-      weight: 0
+      weight: 0.08
     - roomType: 3
       weight: 0
     - roomType: 4
       weight: 0
     - roomType: 5
-      weight: 0
-    - roomType: 6
-      weight: 0
-  - floorMin: 3
-    floorMax: 4
-    weights:
-    - roomType: 0
-      weight: 0.85
-    - roomType: 1
-      weight: 0.15
-    - roomType: 3
-      weight: 0
-    - roomType: 4
-      weight: 0
-    - roomType: 5
-      weight: 0
-    - roomType: 6
-      weight: 0
-  - floorMin: 6
-    floorMax: 9
-    weights:
-    - roomType: 0
-      weight: 0.7
-    - roomType: 1
-      weight: 0.3
-    - roomType: 3
-      weight: 0
-    - roomType: 4
-      weight: 0
-    - roomType: 5
-      weight: 0
+      weight: 0.2
     - roomType: 6
       weight: 0
   enemySpawnProfiles:
@@ -155,7 +129,7 @@ MonoBehaviour:
   - id: ghost_king_boss
     characterData: {fileID: 11400000, guid: 3ce3ccd4c6213574bacc299d4823d7f7, type: 2}
     cost: 999
-    availableFromFloor: 5
+    availableFromFloor: 30
     maxCountPerEncounter: 1
     maxCountPerWave: 1
     tags: 32

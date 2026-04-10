@@ -55,7 +55,7 @@ MonoBehaviour:
     hitId: 0
     hitFilter: 1
     hitFxType: 10
-    attackMultiplier: 1
+    attackMultiplier: 10
     knockbackPower: 500
     knockbackDirectionWeight: 1
     hitApplyBuffs: []

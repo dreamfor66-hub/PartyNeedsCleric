@@ -49,6 +49,10 @@ public class StageRunConfig
 {
     public int totalFloors = 10;
     public int bossFloorInterval = 5;
+    public int mapWidth = 7;
+    public int startNodeCount = 3;
+    public int pathCount = 6;
+    public int maxNodesPerFloor = 3;
     public int startBudget = 5;
     public int budgetIncreasePerFloor = 2;
     public int routeChoiceCount = 2;
@@ -87,6 +91,12 @@ public class StageRunConfig
     {
         if (waveRanges == null)
             waveRanges = new List<RoomWaveRange>();
+
+        mapWidth = Mathf.Max(3, mapWidth);
+        startNodeCount = Mathf.Clamp(startNodeCount, 1, mapWidth);
+        pathCount = Mathf.Max(startNodeCount, pathCount);
+        maxNodesPerFloor = Mathf.Clamp(maxNodesPerFloor, 1, mapWidth);
+        totalFloors = Mathf.Max(1, totalFloors);
 
         if (waveRanges.Count == 0)
         {
@@ -217,4 +227,35 @@ public class GeneratedRoom
     public int waveCount;
     public int budget;
     public MapData runtimeMap;
+}
+
+public class StageMapNode
+{
+    public int id;
+    public int floorNumber;
+    public int column;
+    public StageRoomType roomType;
+    public bool isEntry;
+    public Vector2 uiPosition;
+    public readonly List<StageMapNode> nextNodes = new();
+    public readonly List<StageMapNode> previousNodes = new();
+
+    public bool IsBoss => roomType == StageRoomType.Boss;
+}
+
+public class StageMap
+{
+    public readonly List<StageMapNode> nodes = new();
+    public readonly List<StageMapNode> startNodes = new();
+    public StageMapNode entryNode;
+    public StageMapNode bossNode;
+
+    public IEnumerable<StageMapNode> GetNodesOnFloor(int floorNumber)
+    {
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            if (nodes[i].floorNumber == floorNumber)
+                yield return nodes[i];
+        }
+    }
 }

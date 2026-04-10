@@ -1,7 +1,6 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 
 public class StageManager : MonoBehaviour
 {
@@ -14,8 +13,8 @@ public class StageManager : MonoBehaviour
     StageFlowManager stageFlowManager;
     RoomGenerator roomGenerator;
     RewardManager rewardManager;
+    StageMapUIManager stageMapUIManager;
     GeneratedRoom currentRoom;
-    List<StageRouteChoice> currentRouteChoices = new();
 
     // ========== Visual Settings (Inspector 설정) ==========
     [Header("Map Visual Settings")]
@@ -41,6 +40,8 @@ public class StageManager : MonoBehaviour
             roomGenerator = new RoomGenerator(stageData, encounterGenerator);
             rewardManager = new RewardManager(stageData);
         }
+
+        stageMapUIManager = StageMapUIManager.GetOrCreate();
     }
 
     // ------------------------------------------------------------
@@ -79,12 +80,18 @@ public class StageManager : MonoBehaviour
             yield break;
         }
 
-        StageRoomType? selectedRoute = null;
-        int totalFloorCount = stageFlowManager.GetTotalFloorCount();
+        stageFlowManager.GetOrCreateMap();
 
-        for (currentFloor = 1; currentFloor <= totalFloorCount; currentFloor++)
+        while (true)
         {
-            StageRoomType roomType = stageFlowManager.ResolveRoomType(currentFloor, selectedRoute);
+            StageMapNode selectedNode = null;
+            yield return StartCoroutine(WaitForMapSelection(node => selectedNode = node));
+
+            if (selectedNode == null)
+                yield break;
+
+            currentFloor = selectedNode.floorNumber;
+            StageRoomType roomType = selectedNode.roomType;
             currentRoom = roomGenerator.GenerateRoom(currentFloor, roomType);
             currentMap = currentRoom.runtimeMap;
 
@@ -105,20 +112,43 @@ public class StageManager : MonoBehaviour
 
             rewardManager.GrantReward(currentRoom);
 
-            currentRouteChoices = stageFlowManager.BuildNextRouteChoices(currentFloor + 1);
-            if (currentRouteChoices.Count > 0)
+            if (stageFlowManager.HasReachedBoss())
+                break;
+
+            if (!stageFlowManager.HasAnyReachableNode())
             {
-                stageFlowManager.RecordRouteExposure(currentRouteChoices);
-                Debug.Log($"[Stage] Next routes => {string.Join(", ", currentRouteChoices.Select(x => x.ToString()))}");
-                selectedRoute = currentRouteChoices[0].roomType;
-            }
-            else
-            {
-                selectedRoute = null;
+                Debug.LogWarning("No reachable node remains after clearing current room.");
+                break;
             }
         }
 
         ShowClear();
+    }
+
+    IEnumerator WaitForMapSelection(System.Action<StageMapNode> onSelected)
+    {
+        bool done = false;
+        StageMapNode selectedNode = null;
+
+        stageMapUIManager.ShowMap(
+            stageFlowManager.GetOrCreateMap(),
+            stageFlowManager.GetCurrentNode(),
+            stageFlowManager.GetReachableNodes(),
+            stageFlowManager.GetVisitedNodes(),
+            node =>
+            {
+                if (!stageFlowManager.SelectNode(node))
+                    return;
+
+                selectedNode = node;
+                done = true;
+            });
+
+        while (!done)
+            yield return null;
+
+        stageMapUIManager.Hide();
+        onSelected?.Invoke(selectedNode);
     }
 
     // ============================================================
